@@ -847,7 +847,7 @@ $ git init
 
 .out-t[
 
-Initialized empty Git repository in ../pc/Desktop/resul_git_workshop/.git/
+Initialized empty Git .yellow-h[repository] in ../resul_git_workshop/.git/
 
 ]
 
@@ -858,17 +858,19 @@ Initialized empty Git repository in ../pc/Desktop/resul_git_workshop/.git/
 Note that
 
 - repo is a popular abbreviation for repository
-- a set of files whose records are kept together, by Git and/or on GitHub
-- it is like a folder, which can keep files and other folders containing files
+- a set of files whose records are kept together 
+    - by Git on your laptop, and/or on GitHub
+- it is  a folder, which can keep files and other folders containing files
 
 ---
 ## Command Line &mdash; `git` `init` &mdash; Notes
 
-The `git` `init` command creates a .yellow-h[hidden] `.git` subdirectory
+.pull-left-c[
 
-- will hold the versions of the files and folders tracked in our repository
+The `git` `init` command creates a .yellow-h[hidden] `.git` subdirectory, with the structure on the right
+
+- currently mostly empty
     - nothing is being tracked yet
-    - will be tracked as zipped, not meaningful to view at any stage
 
 - not visible with `ls`
     - but visible with `ls` `-al`
@@ -876,6 +878,31 @@ The `git` `init` command creates a .yellow-h[hidden] `.git` subdirectory
 > `File Explorer -> View -> Hidden items`
 
 - hidden, so that it is harder to delete or alter by mistake
+
+]
+
+.pull-right-c[
+
+```md
+
+.git
+  ├── refs
+  │   ├── tags
+  │   └── heads
+  ├── objects
+  │   ├── pack
+  │   └── info
+  ├── info
+  │   └── exclude
+  ├── hooks
+  │   (12 files)
+  ├── HEAD
+  ├── config
+  └── description
+
+```
+]
+
 
 ---
 ## Command Line &mdash; `git` `add`
@@ -896,7 +923,17 @@ $ git add README.md
 
 .out-t[
 
-journals.csv
+.git     
+&nbsp;&nbsp; │     
+&nbsp;&nbsp; ...     
+&nbsp;&nbsp;  ├── objects    
+&nbsp;&nbsp;  │ &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ├── pack     
+&nbsp;&nbsp;  │ &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ├── info     
+&nbsp;&nbsp;  │ &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; └── .yellow-h[0e]    
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; └── .yellow-h[42fba1f48dd5cbffc4bc769928c4f7afa40852]     
+&nbsp;&nbsp; │     
+&nbsp;&nbsp; ├── .yellow-h[index]     
+&nbsp;&nbsp; ... 
 
 ]
 
@@ -944,17 +981,24 @@ $ git add `.`
 ---
 ## Command Line &mdash; `git` `add`  &mdash; Notes
 
-- The `git` `add` command is only the first of the two steps towards saving a version
+- The `git` `add` command alone does not create a version
+   - it must be followed by the `git` `commit` command, without which 
+       - there is no version of them saved yet
+       - the tracked files are said to be .yellow-h[staged], or in the .yellow-h[staging area]
 
-   - there is no version of them saved yet
-   - the tracked files are said to be .yellow-h[staged], or in the yewllow-h[staged area]
+--
+
+<br>
+
+- Use the `git` `add ` command (and then, the `git` `commit` command)
+    - not only to add a new file to versions
+    - but also, once that file changes, to create a new version every time
    
 --
 
 <br>
 
-- The `git` `add` command can be reversed
-   
+- A file in the staging area can be taken back, before its commit
    - by one of the following, depending on whether they have been versioned before
 
 ```md
@@ -968,43 +1012,52 @@ $ git rm --staged README.md
 ---
 ## Command Line &mdash; `git` `commit`
 
-- Use the `git` `commit` command to save a version
-   - of the file or files that are already in the staged area
+Use the `git` `commit` command to take a snaphot of, or to version, a repository
 
 ```md
-$ git commit -m "first version"
+$ git commit -m "adding the README file"
 ```
 
 ---
 ## Command Line &mdash; `git` `commit`
 
-- Use the `git` `commit` command to save a version
-   - of the file or files that are already in the staged area
+Use the `git` `commit` command to take a snaphot of, or to version, a repository
+- with the changes in the staging area
 
 ```md
-$ git commit -m `"first version"`
+$ git commit -m `"adding the README file"`
 ```
 
 <br>
 
-- This command requires a message
-    - a message to yourself and to co-authors to indicate what has changed
+Note that 
+- committing requires .yellow-h[registering a message]
+    - to yourself and to co-authors to indicate what has changed
 
 ---
 ## Command Line &mdash; `git` `commit`
 
-Use the `git` `commit` command to save a version
-   - of the file or files that are already in the staged area
+Use the `git` `commit` command to take a snaphot of, or to version, a repository
+- with the changes in the staging area
 
 ```md
-$ git commit `-m` "first version"
+$ git commit `-m` "adding the README file"
 ```
 
 <br>
 
-- This command requires a message to be registered
-    - a message to yourself and to co-authors to indicate what has changed
+Note that 
+- committing requires registering a message
+    - to yourself and to co-authors to indicate what has changed
     - typed after the <span style="background-color: #ffff88;">&ndash;m</span> flag
+    
+--
+
+<br>
+
+Recall that
+- committing requires files in the staging area
+   - added with the `git` `add` command
 
 ---
 class: action
@@ -1022,19 +1075,10 @@ class: action
 `r countdown(minutes = 3, seconds = 00, top = 0)`
 
 ---
-## Command Line &mdash; `git` `add ` & `git` `commit` &mdash; Notes
-
-- We use the combination of `git` `add ` & `git` `commit` commands very frequently
-
-    - not only when we first start trackig a file
-    - but also whenever we would like to create a new version
-
----
 ## Command Line &mdash; `git` `status`
 
 Use the `git` `status` command to check the status of your repository
-   - on which branch are you at?
-   - are there any untracked, modified, deleted, staged ... files?
+   - e.g., are there any untracked, modified, deleted, staged etc. files?
 
 ```md
 $ git status
@@ -1058,19 +1102,19 @@ class: action
 ## Exercises
 
 5) Check the status of your repository
-   - using the `git` `status` command
+- using the `git` `status` command
 
-6) Make a change to the README.md file, save, and stage it
-   - by double clicking on it in directory
-       - which will opening it with the default text editor 
-   - add and/or delete a sentence
+6) Make a change to the `README.md` file, and save
+- by double clicking on it in directory
+   - which will opening it with the default text editor 
+- add a new sentence and/or delete an old one
 
-7) Check the status of your repository
+7) Check the status of your repository again
 
-8) Commit a new version
-   - recall the combination of commands
+8) Commit the new version
+   - recall the combination of commands needed
    
-9) Check the status of your repository
+9) Repeat the exercises above one more time
     
 `r countdown(minutes = 7, seconds = 30, top = 0)`
 
