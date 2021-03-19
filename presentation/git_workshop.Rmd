@@ -489,23 +489,23 @@ class: inverse, center, middle
 ]
 
 ---
-## Course Materials &mdash; Overview
+## Workshop Materials &mdash; Overview
 
 Materials, available at <https://github.com/resulumit/git_workshop/tree/materials>, have the following structure
 
 ```
 
-rmd_workshop-materials
-   |
-   |- manuscript
-   |  |
-   |  |- paper.Rmd
-   |  |- paper.docx
-   |  |- paper.pdf
+git_workshop-materials
    |
    |- data
    |  |
    |  |- journals.csv
+   |
+   |- manuscript
+   |  |
+   |  |- journals.docx
+   |  |- journals.pdf
+   |  |- journals.Rmd
    |
    |- README.md
 
