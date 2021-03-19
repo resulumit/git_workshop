@@ -1,0 +1,1436 @@
+---
+title: "Version Control and Collaboration with Git and GitHub"
+subtitle: "Resul Umit"
+institute: ""
+date: "March 2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      highlightSpans: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    seal: false
+---
+
+class: inverse, center, middle
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE, crayon.enabled = TRUE)
+
+library(crayon)
+library(fansi)
+library(dplyr)
+library(ggplot2)
+library(stargazer)
+library(countdown)
+```
+
+<style type="text/css">
+
+.hljs-github .hljs {
+    background: #e5e5e5;
+}
+
+.inline-c, remark-inline-code {
+   background: #e5e5e5;
+   border-radius: 3px;
+   padding: 4px;
+   font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+}
+
+
+.yellow-h{
+   background: #ffff88;
+}
+
+
+.out-t, remark-inline-code {
+   background: #9fff9f;
+   border-radius: 3px;
+   padding: 4px;
+   
+}
+
+.pull-left-c {
+    float: left;
+    width: 58%;
+    
+}
+
+.pull-right-c {
+    float: right;
+    width: 38%;
+    
+}
+
+.medium {
+    font-size: 75%
+    
+}
+
+.small {
+    font-size: 50%
+    }
+
+.action {
+    background-color: #f2eecb;
+  
+}
+
+
+</style>
+
+
+# Version Control and Collaboration with Git and GitHub
+
+<br>
+
+### Resul Umit
+
+### March 2021
+
+.footnote[
+
+[Skip intro &mdash; To the contents slide](#contents-slide).
+
+]
+
+---
+## Who am I?
+
+Resul Umit
+
+- post-doctoral researcher at the University of Oslo
+
+- interested in representation, elections, and parliaments
+    - [a recent publication](https://doi.org/10.1177%2F1478929920967588):
+    Parliamentary communication allowances do not increase electoral turnout or incumbents’ vote share
+
+--
+
+<br>
+
+- teaching workshops also on
+
+  - [writing reproducible research papers with R](https://resulumit.com/blog/rmd-workshop/)
+  - [working with Twitter data in R](https://resulumit.com/syllabi/21spring_twtr.pdf)
+  - [creating professional websites with R](https://resulumit.com/syllabi/20spring_rbd.pdf)
+    
+--
+
+<br>
+
+- more information available at [resulumit.com](https://resulumit.com/)
+
+---
+## The Workshop &mdash; Overview
+
+- Half a day, on how to 
+
+  - version our academic work
+  - store the different versions securely &mdash; in multiple, separate places
+  - collaborate with co-authors &mdash; in writing as well as versioning and storing
+
+--
+
+<br>
+
+- Using Git and GitHub, through
+   
+  - command line tools
+  - GitHub Desktop
+  - R and RStudio
+  
+--
+
+<br>
+
+- Most useful for projects based on pain text
+   - e.g., Markdown, rather than Microsoft Word
+   - but not exclusively so 
+       - projects based on binary files would also benefit
+       - you may switch to plain text in the future
+        
+---
+## The Workshop &mdash; Motivation
+
+- Research projects have many versions, as they are typically completed
+
+  - over a long period of time
+  - in numerous sittings
+  - by multiple authors 
+  - on multiple computers
+
+--
+
+<br>
+
+- With many versions created over time, in different sittings ..., there emerges various challenges
+
+   - keeping track of changes and versions
+   - reverting to a previous version when necessary
+   - storing versions safely in multiple locations
+   - communicating the versions to other authors and/or computers
+   - working on the same project with co-authors at the same time
+
+--
+
+<br>
+
+- We all have to deal with these challenges on daily basis
+   
+   - efficient workflows can save precious resources
+      - e.g., time, but also money and work itself from being wasted
+   
+---
+## The Workshop &mdash; Worklow
+
+- Using Git and GitHub 
+   - originally designed for software development, but can be adopted to academic work
+       - Git creates, saves, and tracks versions
+           - can also save them elsewhere, such as on GitHub
+       - Github keeps a copy online
+           - allowing for safe storage, collaboration
+  - is daunting to beginners, but offers many benefits over alternatives
+--
+
+<br>
+
+- Alternatives are easier for beginners, but sub-optimal in the long run
+
+   - e.g., editing, renaming, saving, and emailing
+   - e.g., using applications or websites such as Dropbox, Google Docs, Overleaf
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+## Version Control &mdash; Git and GitHub &mdash; Definitions
+
+- Git
+    - a software that keeps track of versions of a set of files
+    - it is *local* to you, the records are kept on your computer
+
+--
+
+- GitHub
+    - a hosting service, or a website, that can keep the records
+    - it is *remote* to you, like the Dropbox website
+    - but unlike Dropbox, GitHub is specifically structured to keep records with Git
+
+--
+
+- Repository, or repo
+    - a set of files whose records are kept together, by Git and/or on GitHub
+    - it is like a folder, which can keep files and other folders containing files
+
+---
+## Version Control &mdash; Git and GitHub &mdash; Definitions
+
+- To commit
+    - to take a snaphot of, or to version, a repository
+    - it is like saving a new version of all files and sub-folders in your project folder with a new name
+    - it is local, the records are kept on your computer unless you `push`
+
+--
+
+- To push
+    - to move the records from Git to GitHub, from your computer to online server
+    - it is like uploading (the new versions of) your files and sub-folders to a website, 
+    - it also involves merging, if this not the first push
+
+.footnote[
+
+<sup>*</sup> For projects that are single-authored on a single computer, merging is typically automatic. It becomes an issue for collaborated projects, which we will cover in the next section &mdash; Part 9.
+
+]
+
+
+## Collaboration
+
+- Many research papers are written by multiple authors and/or on multiple computers
+
+    - yourself on a different computer (e.g., laptop at home, desktop at office), poses similar challenges as collaboration
+    
+--
+
+- With multiple authors and/or computers, there emerges at least two additional challenges beyond version control
+
+   - communicating the versions to other authors and/or computers
+   - working on the same project with co-authors at the same time
+
+--
+
+- We all manage collaboration, in different ways, such as
+
+   - edit, rename, save, e-mail
+   - use applications or websites such as Dropbox, Google Docs, Overleaf
+   - use distributed version control systems such as Git and GitHub
+   
+---
+## Collaboration &mdash; Git and GitHub &mdash; Definitions
+
+- To pull
+
+    - to move the (presumably) up-to-date records from GitHub to your computer
+    - it is like downloading a zipped folder of files
+
+--
+
+- To merge
+
+    - to integrate different versions into a single version
+        - e.g., the old version on your laptop, with (the changes in) the new version from GitHub
+    - except the first push or pull, pushing and pulling necessiate merging
+    
+--
+
+- Merge conflict
+
+    - emerges when versions to be merged include edits *on the same line of the same file*
+        - edits on different lines are not a problem as changes are tracked line by line    
+<br>
+    - less likely to occur in one-author-multiple-computer setting 
+        - more likely while collaborating with others    
+<br>
+    - requires human intervention, to decide which edit to keep and which one to discharge
+
+---
+## Collaboration &mdash; Git and GitHub &mdash; Definitions
+
+- Branch
+
+    - a line of development in a repository; a copy of the repository, with all its versions, at a given time
+    - by default, repositories have one branch, called *master*
+
+
+- Pull request    
+
+    - a proposal to pull and merge
+        - e.g., a proposal from one co-author to another, 
+        -e.g., tp merge a branch into master
+    - it allows a review of changes on GitHub before merge, to deal with potential merge conflicts
+    
+
+
+
+
+
+   
+
+
+
+
+---
+## The Workshop &mdash; Overview
+
+- Two days, on how to write reproducible research papers with R Markdown
+
+  - 200+ slides, 40+ exercises, and time for converting a real project
+
+--
+
+- Based on converting a mock manuscript written in Word to R Markdown
+
+  - plus, improving its reproducibility and version-controlling it
+  - with a PDF output in mind
+
+--
+
+- Designed for researchers with basic knowledge of R programming language
+
+  - does not cover programming with R
+      - e.g., writing functions    
+<br>
+  - ability to regress, plot, and table in R will be very helpful
+      - but not absolutely necessary &mdash; these skills can be developed after learning R Markdown as well
+        
+---
+name: contents-slide
+
+## The Workshop &mdash; Contents
+
+[Part 1. Getting the Tools Ready](#part1)
+   - e.g., downloading course material
+
+[Part 2. Command Line](#part2)
+   - e.g., creating a new document
+
+[Part 3. GitHub Desktop](#part3)
+   - e.g., defining output format
+
+[Part 4. R and RStudio](#part4)
+   - e.g., adding emphasis to text
+   
+
+---
+## The Workshop &mdash; Organisation
+
+- Sit in groups of two
+
+  - participants learn as much from their partner as from instructors
+  - play the role of co-authors
+  
+--
+
+- Type, rather than copy and paste, the code that you will find on these slides
+
+  - typing is a part of the learning process
+  
+--
+
+- When you have a question
+
+  - ask your partner
+  - google together
+  - ask me
+
+---
+class: action
+
+## The Workshop &mdash; Organisation &mdash; Slides
+
+Slides with this background colour indicate that your action is required, for
+
+- setting the workshop up
+    - e.g., downloading course material 
+    
+- completing the exercises
+    - e.g., saving a different version of a file
+    - there are 20+ exercises
+    - these slides have countdown timers
+    
+    
+`r countdown(minutes = 3, seconds = 00, top = 0)`
+
+---
+## The Workshop &mdash; Organisation &mdash; Slides
+
+- Codes and texts that go in .inline-c[appear as such &mdash; in a different font, on gray background]
+    - long codes and texts will have their own line(s)
+
+```md
+
+ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
+       geom_point() +
+       facet_wrap(. ~ branch) +
+       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield"))    
+
+```
+
+---
+## The Workshop &mdash; Organisation &mdash; Slides
+
+- Codes and texts that go in .inline-c[appear as such &mdash; in a different font, on gray background]
+    - long codes and texts will have their own line(s)
+
+- Results that come out in .out-t[appear as such &mdash; in the same font, on green background]
+    - except very obvious results, such as screenshots
+    
+--
+    
+- Specific sections are .yellow-h[highlighted yellow as such] for emphasis
+    - these could be for anything &mdash; codes and texts in input, results in output, and/or texts on slides
+    
+--
+
+- The slides are designed for self-study as much as for the workshop
+    - *accessible*, in substance and form, to go through on your own
+
+---
+## The Workshop &mdash; Aims
+
+- To make you aware what is possible with Git and GitHub
+
+  - we will cover a large breath of issues, not all of it is for long-term memory
+      - one reason why the slides are designed for self study as well    
+<br>
+  - awareness of what is possible, `Google`, and perseverance are all we need
+
+--
+
+- To encourage you to convert into the Git and GitHub workflow 
+
+  - practice with a mock project, co-author
+  - start converting a real one right after the workshop
+      - happy to help via emails afterwards
+    
+---
+name: part1
+class: inverse, center, middle
+
+# Part 1. Getting the Tools Ready
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
+---
+## Course Materials &mdash; Overview
+
+Materials, available at <https://github.com/resulumit/rmd_workshop/tree/materials>, have the following structure
+
+```
+
+rmd_workshop-materials
+   |
+   |- manuscript
+   |  |
+   |  |- reproduce_this.pdf
+   |  |- journals.Rmd
+   |  |- references.bib
+   |  |- apa_7th.csl
+   |
+   |- data
+   |  |
+   |  |- journals.csv
+   |
+   |- image
+   |  |
+   |  |- google_scholar.png
+   
+   
+```
+
+---
+name: download-zip
+class: action
+
+## Course Materials &mdash; Download from the Internet
+
+- Download the materials from <https://github.com/resulumit/rmd_workshop/tree/materials>
+
+  - on the webpage, follow
+
+> `Code -> Download ZIP`
+
+<br>
+
+- Unzip and rename the folder
+
+  - unzip to a location that is not synced
+     - e.g., perhaps Documents, but not Dropbox
+  
+  - rename the folder as `YOURNAME-rmd`
+     - e.g., `resul-rmd`
+     - this will come handy in Part 9
+  
+---
+## Course Materials &mdash; Contents
+
+- `manuscript\reproduce_this.pdf`
+
+    - the document, formatted in Word but saved as PDF, that we will re-create with R Markdown 
+    - randomly generated sentences, with figures and tables from randomly a generated dataset<sup>*</sup>
+    - key sections in-need of attention are highlighted yellow
+    
+.footnote[
+
+<sup>*</sup> The text, _Lorem ipsum_, is generated with the `stringi` package (Gagolewski, 2020) while the dataset is created with the `fabricatr` package (Blair et al., 2019). 
+
+]
+
+---
+## Course Materials &mdash; Contents
+
+- `manuscript\reproduce_this.pdf`
+    - the document, formatted in Word but saved as PDF, that we will re-create with R Markdown 
+    - randomly generated sentences, with figures and tables from randomly generated dataset
+    - key sections in-need of attention are highlighted
+
+- `manuscript\journals.Rmd`
+    - the R Markdown document that we will work on
+    - includes unformatted text from `reproduce_this.pdf` to save time
+    - major components, such as paragraphs and tables, are numbered and marked in comments to facilitate navigation
+
+--
+
+- `manuscript\references.bib` 
+
+    - a BibTeX document with three fabricated references
+
+--
+
+- `manuscript\apa_7th.csl`
+
+    - a Citation Style Language document, with APA (7th Edition) referencing style (Wiernik, 2020)
+
+---
+## Course Materials &mdash; Contents  
+
+`data\journals.csv`
+- a dataset created with the `fabricatr` package (Blair et al., 2019), imagined to explore the `Google Scholar` rankings of fictitious journals
+    
+- includes the following variables 
+    - **name**: journals (1090 random titles)
+    - **origin**: geographic origins (five continents)
+    - **branch**: major discipline of journals (four branches)
+    - **since**: time of first publication (years)
+    - **h5_index**: H5 Index (integers)
+    - **h5_median**: H5 Median (integers)
+    - **english**: English (1) *vs.* other-language (0) journals
+    - **subfield**: subfield (1) *vs.* generalist (0) journals
+    - **issues**: number of issues published per year (integers)
+
+---
+## Course Materials &mdash; Contents  
+
+- `image\google_scholar.png`
+
+    - a screeenshot image of the [Google Scholar homapage](https://scholar.google.ch/)
+
+---
+class: action
+name: install-git
+
+## Git &mdash; Download from the Internet and Install
+
+- For Windows, install 'Git for Windows', downloading from [https://gitforwindows.org](https://gitforwindows.org/)
+       - select 'Git from the command line and also from 3rd-party software'
+       
+- For Mac, install 'Git', downloading from [https://git-scm.com/downloads](https://git-scm.com/downloads)
+
+---
+class: action
+
+## GitHub &mdash; Open an Account
+
+Sign up for GitHub at [https://github.com](https://github.com/)
+
+- registering an account is free
+
+- usernames are public
+      - either choose an anonymous username (e.g., `asdf029348`)
+      - or choose one carefully &mdash; it becomes a part of users' online presence
+      
+- usernames can be changed later
+        
+---
+## Other Resources<sup>*</sup>
+
+- Pandoc User's Guide
+
+   - available at [https://pandoc.org/MANUAL.html](https://pandoc.org/MANUAL.html)
+
+- R Markdown: The Definitive Guide (Xie et al., 2019)
+
+   - open access at [https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown/)
+    
+
+- R for Data Science (Wickham and Grolemund, 2019)
+  
+   - open access at [https://r4ds.had.co.nz](https://r4ds.had.co.nz/)
+   
+.footnote[
+
+<sup>*</sup> During the workshop, R Markdown Cheat Sheet is likely to be more helpful than these resources, which I recommend to be consulted after the workshop.
+
+]
+
+
+
+---
+name: part8
+class: inverse, center, middle
+
+# Part 8. Using Version Control
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
+---
+
+
+---
+## Version Control &mdash; Git and GitHub
+
+Version control with Git and GitHub requires
+
+1. .yellow-h[initial setup], done once<sup>*</sup>
+    - unless for a new computer or, if ever, a new GitHub account
+    - a bit technical, but worth the hassle
+    
+2. .yellow-h[project setup], repeated for every paper
+    - shorter, less complicated
+
+.footnote[
+
+<sup>*</sup> We have started this process already, in Part 1 of the workshop, by downloading and installing Git and signing up for GitHub. [Back to the relevant slide](#install-git).
+
+]
+
+---
+class: action
+
+## Version Control &mdash; Git &mdash; Inital Setup
+
+1) Enable version control with RStudio
+
+- from the RStudio menu, follow:
+
+> `Tools -> Global Options -> Git/SNV -> Enable version control interface for RStudio projects`
+
+- RStudio will likely find Git automatically. In case it cannot, Git is likely to be at
+
+    - `c:/Program Files/Git/bin/git.exe` on Windows
+
+    - `/usr/local/git/bin/git` on Mac
+
+---
+class: action
+
+## Version Control &mdash; Git &mdash; Inital Setup
+
+
+2) Set Git Bash as your shell (Windows-only step)
+
+- from the RStudio menu, follow:
+
+> `Tools -> Global Options -> Terminal -> New terminals open with: Git Bash`
+
+---
+class: action
+
+## Version Control &mdash; Git &mdash; Inital Setup
+
+3) Introduce yourself to Git
+
+- from the RStudio menu, follow:
+
+> `Tools -> Terminal -> New Terminal`
+
+- enter the following lines in the Terminal, with the email address that you have used to sign up for GitHub
+
+```yaml
+git config --global user.name "YOUR-NAME" 
+git config --global user.email "YOUR-EMAIL-ADDRESS"
+```
+
+- enter the following line in the Terminal, to observe whether the previous step was sucessful
+
+```yaml
+git config --global --list
+
+```
+
+---
+class: action
+
+## Version Control &mdash; Git and Github &mdash; Project Setup<sup>*</sup>
+
+1) Initiate local version control with Git
+
+- from the RStudio menu, follow:
+
+> `Tools -> Version Control -> Project Setup... -> Version Control System -> Git`
+
+
+- after confirming your new repository, and restarting the session, observe that 
+
+   - now there is now a Git tab in RStudio, documenting the differences between you local repository and the one on GitHub. When you change a file, it will appear here.  
+   
+   - your project now includes a `.gitignore` file
+       - this is where you can list files and/or folders to be excluded from being tracked
+
+.footnote[
+
+<sup>*</sup> These instructions presume there is an exiting RStudio project to be set up for version control. If not, or to start a new project, follow from [this slide](#rstudio-project) first.
+
+]
+
+---
+class: action
+
+## Version Control &mdash; Git and Github &mdash; Project Setup
+
+2) Create a new GitHub repository
+
+- on GitHub, follow:
+
+> `Repositories -> New -> Repository name (e.g., "rwd_workshop") -> Public -> Create repository`
+
+- observe that
+
+    - repository URLs have the following structure: https://github.com/USER_NAME/REPOSITORY_NAME
+    
+        - this is the address to view the repository online
+        - for use in the `Terminal`, the address gets the `.git` extension
+            - e.g., https://github.com/USER_NAME/REPOSITORY_NAME.git
+
+---
+class: action
+
+## Version Control &mdash; Git and Github &mdash; Project Setup
+
+3) Push an existing repository
+
+- from the RStudio menu, follow:
+
+> `Tools -> Terminal -> New Terminal`
+
+- enter the following lines in the `Terminal`, with your username and repository name
+
+```yaml
+git remote add origin https://github.com/USER_NAME/REPOSITORY_NAME.git
+git add .
+git commit -m "first commit"
+git push -u origin master
+
+```
+
+--
+
+- if this is your first time using GitHub with RStudio, you will be prompted to authenticate
+   - follow the instructions on your screen and in your email
+
+- observe that your project files are now online, listed on the GitHub repository
+
+---
+class: action
+name: version-control-workflow
+
+## Version Control &mdash; Git and Github &mdash; Workflow
+
+1) Edit and Save 
+
+- work on one or more files under version control
+    - e.g., delete the first sentence of the abstract in `journals.Rmd`, and save it
+    - under the Git tab in RStudio, find the list of files that you edited since the last push
+    - these will have `M`, for modified, as `Status`     
+
+--
+
+2) Commit and Push
+
+- tick `Staged`<sup>*</sup>  for one or more files that you would like to commit
+   - enter a `Commit message` that summarises the edits
+   - click `Commit` to create a record of the new version locally to your computer
+   - click `Close -> Push` to push the version to GitHub
+
+.footnote[
+
+<sup>*</sup> To stage is to add files to be comitted. It allows us to commit files individually or together with other files.
+
+]
+
+---
+class: action
+name: git-github-basic-workflow
+
+## Version Control &mdash; Git and Github &mdash; Workflow
+
+1) Edit and Save 
+
+- work on one or more files under version control
+    - e.g., delete the first sentence of the abstract in `journals.Rmd`, and save it
+    - under the Git tab in RStudio, find the list of files that you edited since the last push
+    - these will have `M`, for modified, as `Status`     
+
+2) Commit and Push
+
+- tick `Staged` for one or more files that you would like to commit
+    - enter a `Commit message` that summarises the edits
+    - click `Commit` to create a record of the new version locally to your computer
+    - click `Close -> Push` to push the version to GitHub
+
+- observe the changes in the Git tab in RStudio and on the GitHub repository
+
+---
+## Version Control &mdash; Git and Github &mdash; `.gitignore`
+
+- `.gitignore` specifies which file(s) and/or folder(s) should be excluded from version control
+
+    - a set of project-specific files are ignored by default
+        - see your `.gitignore` file
+
+--
+
+- `.gitignore` lists one item per line
+
+    - each line has a pattern, which determines whether one or more files or folders are to be ignored
+
+--
+
+- See the documentation at <https://git-scm.com/docs/gitignore> 
+
+    - for pattern formats and further details
+
+---
+## Version Control &mdash; Git and Github &mdash; `.gitignore`
+
+- There might be good reasons to ignore some others, including files
+
+    - that contain information that we do not want others to see
+        - e.g., personal API keys    
+<br>
+    - that we do not have the right to share with others
+        - e.g., secondary data with user agreements otherwise    
+<br>
+    - that we (re-)create automatically as outputs
+        - e.g., `journals.pdf`, as opposed to journals.Rmd
+        
+---
+## Version Control &mdash; Git and Github &mdash; `.gitignore`
+
+.pull-left[
+
+- Observe that, by default, `.gitignore` has a list of project-specific files
+    - you can delete, or comment out, any or all to start including them in version control
+
+]
+
+.pull-right[
+
+```{r, eval = FALSE}
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+```
+
+]
+
+---
+## Version Control &mdash; Git and Github &mdash; `.gitignore`
+
+.pull-left[
+
+- Observe that, by default, `.gitignore` has a list of project-specific files
+
+- In addition, you can ignore, for example,
+
+    - <span style="background-color: #ffff88;">a specific folder</span>, relative to the root directory
+
+]
+
+.pull-right[
+
+```{r, eval = FALSE}
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+/manuscript/      #<<
+```
+
+]
+
+---
+## Version Control &mdash; Git and Github &mdash; `.gitignore`
+
+.pull-left[
+
+- Observe that, by default, `.gitignore` has a list of project-specific files
+
+- In addition, you can ignore, for example,
+
+    - a specific folder, relative to the root directory
+
+    - <span style="background-color: #ffff88;">a specific file in a specific folder</span>, relative to the root directory
+
+]
+
+.pull-right[
+
+```{r, eval = FALSE}
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+/manuscript/
+/manuscript/journals.pdf         #<<
+```
+
+]
+
+---
+## Version Control &mdash; Git and Github &mdash; `.gitignore`
+
+.pull-left[
+
+- Observe that, by default, `.gitignore` has a list of project-specific files
+
+- In addition, you can ignore, for example,
+
+    - a specific folder, relative to the root directory
+
+    - a specific file in a specific folder, relative to the root directory
+
+    - <span style="background-color: #ffff88;">a specific file in any folder</span>
+
+]
+
+.pull-right[
+
+```{r, eval = FALSE}
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+/manuscript/
+/manuscript/journals.pdf
+journals.pdf               #<<
+```
+
+]
+
+---
+## Version Control &mdash; Git and Github &mdash; `.gitignore`
+
+.pull-left[
+
+- Observe that, by default, `.gitignore` has a list of project-specific files
+
+- In addition, you can ignore, for example,
+
+    - a specific folder, relative to the root directory
+
+    - a specific file in a specific folder, relative to the root directory
+
+    - a specific file in any folder
+    
+    - <span style="background-color: #ffff88;">all files with a specific extension</span>, anywhere in the project
+
+]
+
+.pull-right[
+
+```{r, eval = FALSE}
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+/manuscript/
+/manuscript/journals.pdf
+journals.pdf               
+**.pdf
+```
+
+]
+
+---
+## Version Control &mdash; Git and Github &mdash; `.gitignore` &mdash; Notes
+
+- There are many other pattern formats    
+
+    - see the documentation at <https://git-scm.com/docs/gitignore>
+
+--
+
+- Starting to ignore a file or folder that is already being tracked requires clearing the cache
+
+    - after changing and saving `.gitignore`, enter the following line in the `Terminal`
+    - with your speficic `/path/to/file`
+
+```yaml
+git rm --cached /path/to/file
+
+```
+--
+
+- The following command clears *all* cache
+
+    - might be useful after changes to `.gitignore` that involves several files or folders
+    - but should be used with care, on an otherwise up-to-date repository  
+    
+```yaml
+git rm -r --cached .
+
+```
+
+---
+class: action
+
+## Exercises
+
+35) Reproducibility and Version Control
+- imagine that, after producing all these tables and figures, and writing up your results, you have decided to exclude journals from Oceania from analysis
+   - hint: use the `filter` function in the data chunk  
+   - create a new version of the manuscript
+   - comit and push to GitHub
+   
+36) Gitignore
+- stop tracking `journals.pdf`
+    - change `.gitignore`
+    - remove `journals.pdf` from cache
+    - comit and push to GitHub
+
+
+`r countdown(minutes = 5, seconds = 00, top = 0)`
+
+---
+name: part9
+class: inverse, center, middle
+
+# Part 9. Collaborating with Others
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
+---
+
+---
+## Collaboration &mdash; Git and GitHub &mdash; Project Setup
+
+- The setup depends on the users' role, on whether they are
+    - the *owner* who creates the GitHub repository, or
+    - the *collaborator* who is then added to that repository
+
+--
+
+- Once the project is setup
+    - it continues to be associated with the owner's GitHub profile
+    - at the same time, it is listed under the collaborator's profile as well
+    - both the owner and the collaborator have the same rights, unless otherwise restricted
+
+---
+## Collaboration &mdash; Git and GitHub &mdash; Project Setup &mdash; Owner
+
+1) The setup for the owner is largely the same as in any single-author, single-computer scenario
+- following the instructions on [this slide](#rstudio-project) forward
+    - to introduce version control to a local project with Git,
+    - to create a remote repository for that project on GitHub, and
+    - to associate the local project with the remote repository
+
+<br>
+--
+
+2) As an additional step, the owner needs to invite their collaborator(s) to the project
+- following, from the relevant GitHub repository, 
+
+> `Settings -> Manage access -> Invite a collaborator`
+
+
+---
+## Collaboration &mdash; Git and GitHub &mdash; Project Setup &mdash; Collaborator
+
+
+1) Notice that the remote part of the setup is done by the owner for the collaborator
+- subject to acceptance of the invitation
+    - invitations are available directly at <https://github.com/notifications>, but also sent via email
+    - with an option to "Accept invitation"
+    - on acceptance, projects appear among the repositories of the collaborator
+        
+--
+
+2) The local part of the setup still needs to be done
+- by creating a new RStudio project with version control
+- following, from the Rstudio menu,<sup>*</sup> 
+
+> `File -> New Project -> Version Control -> Git`
+
+--
+
+- the `Repository URL`, required for the above process, is the version without the `.git` extension
+    - in the form of https://github.com/OWNER_USER_NAME/REPOSITORY_NAME
+
+---
+class: action
+
+## Exercises
+
+37) Owner Setup
+- create a new version-controlled RStudio project, with Git and GitHub
+- add the default R Markdown template to your project
+    - hint: click `File -> New File -> R Markdown -> OK` to create the template
+    - another hint: name the project and the template in a way that they are easily distinguishable from your partner's project and template
+
+38) Invitation to Collaborate
+- invite the partner in your current group as a collaborator to your new project
+    - hint: you will need their username, full name, or email address to do so
+
+39) Collaborator Setup
+- accepting the invitation from your partner, do the necessary arrangements so that you can collaborate on your partner's project
+
+
+`r countdown(minutes = 10, seconds = 00, top = 0)`
+
+---
+## Colloboration &mdash; Git and Github &mdash; Workflow
+
+1) Pull
+
+- on the Git tab in RStudio, click `Pull` to move the up-to-date records from GitHub to your computer
+    - if your collaborator has not pushed anything since your last pull, you will be noticed that `Already up-to-date`.
+    - collaborative projects require pulling as well as pushing because your collaborator(s) might have pushed their commits to GitHub
+    - pulling frequently minimises the risk of merge conflicts
+
+--
+
+2) Edit and save; commit and push
+
+- the same procedure as in any single-author, single-computer scenario
+    - as described on [this slide](#git-github-basic-workflow) forward
+- pushing frequently minimises the risk of merge conflicts
+
+---
+class: action
+
+## Exercise
+
+40) Non-simultaneous Collaboration
+
+- take in turns with your partner to work on the same document (of the same project)
+    - *owner*: edit the first header in the document (i.e., "R Markdown"), save, commit, and push
+    - *owner and collaborator*: observe the changes, if any, on your own `.Rmd` file, and/or on your GitHub repository
+        - click on the relevant commit message on GitHub and observe the commit
+    - *collaborator*: pull, revert the header back to original, save, commit, and push
+
+`r countdown(minutes = 5, seconds = 00, top = 0)`
+
+--
+
+- notice that you have not encountered any errors and/or merge conflicts
+    - because everyone edited and merged with an up-to-date document
+    - this is the default scenario in single-author, multiple computer scenario
+
+---
+class: action
+
+## Exercise
+
+41) Simultaneous Collaboration &mdash; Different Lines
+
+- work on the same document at the same time
+    - *owner*: edit the first header in the document (i.e., "R Markdown"), save, commit, and push
+    - *collaborator*: edit the second header in the document (i.e., "Including Plots"), save, commit, and push
+        - observe the error message that the last pusher will receive, follow the instructions on RStudio to solve the problem
+
+`r countdown(minutes = 10, seconds = 00, top = 0)`
+
+--
+
+- notice that you have encountered an error but not a merge conflict
+    - pulling before pushing solves the problem because the edits are not on the same line
+    - the merge takes place automatically, on the *local* repository of the last pusher
+
+---
+class: action
+
+## Exercise
+
+42) Simultaneous Collaboration &mdash; Same Line
+
+- work on the same document at the same time
+    - *owner*: edit the first header in the document again, save, commit, and push
+    - *collaborator*: edit the first header in the document as well, save, commit, and push
+        - observe the error message that the last pusher will receive, follow the instructions on RStudio to solve the problem
+
+`r countdown(minutes = 10, seconds = 00, top = 0)`
+
+--
+
+- notice that you have encountered not only an error but also a merge conflict
+    - pulling before pushing alone does not solve the problem because the edits are on the same line
+        - the conflict cannot be solved automatically &mdash; it needs human intervention
+        - by pulling first, you can view the conflict directly on the file
+            - marked between less than <span style="background-color: #ffff88;">&lt;</span> and greater than <span style="background-color: #ffff88;">&gt;</span> signs, divided by the equal signs
+            - solution is to accept the remote version, by deleting your edit and or moving that edit to a different line
+    - merging takes place on the *local* repository of the last pusher
+
+---
+## Colloboration &mdash; Git and Github &mdash; Workflow &mdash; Alternative
+
+- The workflow above is rather simple, but has some disadvantages, including
+    - not easy, albeit still possible, to see the edits of the collaborators
+    - not clear who is in charge of the overall progress
+    - not possible to discuss edits
+    - not possible to compromise on conflicting edits
+
+--
+
+- An alternative workflow exits
+    - work on different branches of the same project
+    - version control to your own branch
+    - create pull requests with comments
+    - merge the branch into master
+
+
+---
+## Colloboration &mdash; Git and Github &mdash; Workflow &mdash; Alternative
+
+1) Branch
+
+- click `New Branch` on the Git tab
+    - name it, and leave everything else as default
+    - notice that you are now working on a new branch
+
+
+2) Edit and save; commit and push
+
+- the same procedure as in any single-author, single-computer scenario
+    - as described on [this slide](#git-github-basic-workflow) forward
+- notice, on GitHub, that your commit is in the new branch, while *master* remains unchanged
+
+3) Pull request
+
+- On GitHub, click 
+> `Pull requests -> New pull request`
+
+- choose what is to be pulled, and write a note to your collaborator who can accept or reject the merge
+    - if there are merge conflicts, the collaborator solves them on GitHub before merging
+
+---
+class: action
+
+## Exercises
+
+43) Pull request
+
+- create a pull request for your collaboration project
+    - create a branch for yourself
+    - edit any line, save, commit, and push
+    - request your branch to be merged
+    
+44) Merging
+
+- view the pull request of your collaborator
+- take the necessary steps to merge it to *master*
+
+`r countdown(minutes = 10, seconds = 00, top = 0)`
+
+---
+## Colloboration &mdash; Git and Github &mdash; Workflow &mdash; Notes
+
+- It is possible to edit `.Rmd` documents directly on GitHub
+
+    - click on any editable file, and `Edit this file`
+    - commit changes, either as a direct commit or a pull request
+--
+
+- A GitHub account is enough for collaboration with co-authors who do not work with Git, R, or RStudio
+
+    - not possible to knit to see the outcome
+    - would suit co-authors whose contributions are plain text
+
+---
+class: action
+
+## Exercises
+
+45) GitHub edit
+
+- create two edits on the `.Rmd` document in your collaboration project
+- commit one of the edits as a direct commit
+- commit the other as a pull request
+
+`r countdown(minutes = 5, seconds = 00, top = 0)`
+    
+---
+name: part10
+class: inverse, center, middle
+
+# Part 10. Working on a Real Project
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
+---
+## Real Project
+
+- Consider converting a real project to R Markdown
+    - now, in the remainder of the workshop
+
+- Choose an existing project, preferably
+    - single-authored
+    - at an early stage
+    - but one that you are, will be, working on
+
+- Ask me for help
+    - with no more slides to go through, I will now focus on helping you start your first project in R Markdown
+
+---
+class: inverse, center, middle
+
+# References
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
+
+---
+## References
+
+Allaire, J. J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W. and Iannone, R. (2020). [rmarkdown: Dynamic documents for R](https://cran.r-project.org/web/packages/rmarkdown/index.html). R package, version 2.1.
+
+Blair, G., Cooper, J., Coppock, A., Humphreys, M., Rudkin, A. and Fultz, N. (2019). [fabricatr: Imagine your data before you collect it](https://cran.r-project.org/web/packages/fabricatr/index.html). R package, version 0.10.0.
+
+Carlisle, D., Fairbairns, R., Harris, E. and Tobin, G. (2011). [setspace – Set space between lines](https://ctan.org/pkg/setspace). LaTeX package, version 6.7a.
+
+Dowle, M. and Srinivasan, A. (2019). [data.table: Extension of 'data.frame'](https://cran.r-project.org/web/packages/data.table/index.html). R package, version 1.12.8.
+
+Gagolewski, M. (2020). [stringi: Character String Processing Facilities](https://cran.r-project.org/web/packages/stringi/index.html). R package, version 1.4.6.
+
+Hlavac, M. (2018). [stargazer: Well-formatted regression and summary statistics tables](https://cran.r-project.org/web/packages/stargazer/index.html). R package, version 5.2.2.
+
+Sievert, C., Parmer, C.,  Hocking, T., Chamberlain, S., Ram, K., Corvellec, M., & Despouy, P. (2020). [plotly: Create Interactive Web Graphics via 'plotly.js'](https://cran.r-project.org/web/packages/plotly/index.html). R package, version 4.9.3.
+
+Wickham, H. and Grolemund, G. (2019). R for data science. O'Reilly. Open access at [https://r4ds.had.co.nz](https://r4ds.had.co.nz/).
+
+Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H. and Dunnington, D. (2020a). [dplyr: A grammar of data manipulation](https://cran.r-project.org/web/packages/dplyr/index.html). R package, version 0.8.5.
+
+---
+## References
+
+Wickham, H., François, W., Henry L. and Müller, K. (2020b). [ggplot2: Create elegant data visualisations using the grammar of graphics](https://cran.r-project.org/web/packages/ggplot2/index.html). R package, version 0.8.5.
+
+Wiernik, B. M. (2020). [American Psychological Association 7th edition (no ampersand)](https://www.zotero.org/styles/apa-no-ampersand). Citation style language file, version 1.0.
+
+Xie, Y. (2020a). [tinytex: Helper functions to install and maintain TeX Live and compile LaTeX documents](https://cran.r-project.org/web/packages/tinytex/index.html). R package, version 0.21.
+
+Xie, Y. (2020b). [knitr: A general-purpose package for dynamic report generation in R](https://cran.r-project.org/web/packages/knitr/index.html). R package, version 1.28.
+
+Xie, Y. (2020c). [bookdown: Authoring books and technical documents with R Markdown](https://cran.rstudio.com/web/packages/bookdown/index.html). R package, version 0.18.
+
+Xie, Y. (2020d). [blogdown: Create blogs and websites with R Markdown](https://cran.r-project.org/web/packages/blogdown/index.html). R package, version 0.18.
+
+Xie, Y., Allaire, J. J., and Grolemund, G. (2019). R markdown: The definitive guide. CRC Press. Open access at [https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown/).
+
+Zhu, H. (2019). [kableExtra: Construct Complex Table with 'kable' and Pipe Syntax](https://cran.r-project.org/web/packages/kableExtra/index.html). R package, version 1.1.0.
+
+---
+class: middle, center
+
+## The workshop ends here.
+## Congratulations for making it this far, and
+## thank you for joining me!
+
+.footnote[
+
+[Back to the contents slide](#contents-slide).
+
+]
