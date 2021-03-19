@@ -66,6 +66,18 @@ library(countdown)
     
 }
 
+.pull-left-d {
+    float: left;
+    width: 38%;
+    
+}
+
+.pull-right-d {
+    float: right;
+    width: 58%;
+    
+}
+
 .medium {
     font-size: 75%
     
@@ -203,186 +215,34 @@ Resul Umit
 
    - e.g., editing, renaming, saving, and emailing
    - e.g., using applications or websites such as Dropbox, Google Docs, Overleaf
-
+   
 ---
+## The Workshop &mdash; Contents
 
+.pull-left[
 
+[Part 1. Getting the Tools Ready](#part1)
+   - downloading workshop material
+   - installing Git and GitHub Desktop
+   - opening an account on GitHub
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-## Version Control &mdash; Git and GitHub &mdash; Definitions
-
-- Git
-    - a software that keeps track of versions of a set of files
-    - it is *local* to you, the records are kept on your computer
-
---
-
-- GitHub
-    - a hosting service, or a website, that can keep the records
-    - it is *remote* to you, like the Dropbox website
-    - but unlike Dropbox, GitHub is specifically structured to keep records with Git
-
---
-
-- Repository, or repo
-    - a set of files whose records are kept together, by Git and/or on GitHub
-    - it is like a folder, which can keep files and other folders containing files
-
----
-## Version Control &mdash; Git and GitHub &mdash; Definitions
-
-- To commit
-    - to take a snaphot of, or to version, a repository
-    - it is like saving a new version of all files and sub-folders in your project folder with a new name
-    - it is local, the records are kept on your computer unless you `push`
-
---
-
-- To push
-    - to move the records from Git to GitHub, from your computer to online server
-    - it is like uploading (the new versions of) your files and sub-folders to a website, 
-    - it also involves merging, if this not the first push
-
-.footnote[
-
-<sup>*</sup> For projects that are single-authored on a single computer, merging is typically automatic. It becomes an issue for collaborated projects, which we will cover in the next section &mdash; Part 9.
+[Part 2. Command Line](#part2)
+   - basic operations through typing commands
 
 ]
 
-
-## Collaboration
-
-- Many research papers are written by multiple authors and/or on multiple computers
-
-    - yourself on a different computer (e.g., laptop at home, desktop at office), poses similar challenges as collaboration
-    
 --
-
-- With multiple authors and/or computers, there emerges at least two additional challenges beyond version control
-
-   - communicating the versions to other authors and/or computers
-   - working on the same project with co-authors at the same time
-
---
-
-- We all manage collaboration, in different ways, such as
-
-   - edit, rename, save, e-mail
-   - use applications or websites such as Dropbox, Google Docs, Overleaf
-   - use distributed version control systems such as Git and GitHub
-   
----
-## Collaboration &mdash; Git and GitHub &mdash; Definitions
-
-- To pull
-
-    - to move the (presumably) up-to-date records from GitHub to your computer
-    - it is like downloading a zipped folder of files
-
---
-
-- To merge
-
-    - to integrate different versions into a single version
-        - e.g., the old version on your laptop, with (the changes in) the new version from GitHub
-    - except the first push or pull, pushing and pulling necessiate merging
-    
---
-
-- Merge conflict
-
-    - emerges when versions to be merged include edits *on the same line of the same file*
-        - edits on different lines are not a problem as changes are tracked line by line    
-<br>
-    - less likely to occur in one-author-multiple-computer setting 
-        - more likely while collaborating with others    
-<br>
-    - requires human intervention, to decide which edit to keep and which one to discharge
-
----
-## Collaboration &mdash; Git and GitHub &mdash; Definitions
-
-- Branch
-
-    - a line of development in a repository; a copy of the repository, with all its versions, at a given time
-    - by default, repositories have one branch, called *master*
-
-
-- Pull request    
-
-    - a proposal to pull and merge
-        - e.g., a proposal from one co-author to another, 
-        -e.g., tp merge a branch into master
-    - it allows a review of changes on GitHub before merge, to deal with potential merge conflicts
-    
-
-
-
-
-
-   
-
-
-
-
----
-## The Workshop &mdash; Overview
-
-- Two days, on how to write reproducible research papers with R Markdown
-
-  - 200+ slides, 40+ exercises, and time for converting a real project
-
---
-
-- Based on converting a mock manuscript written in Word to R Markdown
-
-  - plus, improving its reproducibility and version-controlling it
-  - with a PDF output in mind
-
---
-
-- Designed for researchers with basic knowledge of R programming language
-
-  - does not cover programming with R
-      - e.g., writing functions    
-<br>
-  - ability to regress, plot, and table in R will be very helpful
-      - but not absolutely necessary &mdash; these skills can be developed after learning R Markdown as well
-        
----
 name: contents-slide
 
-## The Workshop &mdash; Contents
-
-[Part 1. Getting the Tools Ready](#part1)
-   - e.g., downloading course material
-
-[Part 2. Command Line](#part2)
-   - e.g., creating a new document
+.pull-right[
 
 [Part 3. GitHub Desktop](#part3)
-   - e.g., defining output format
+   - basic operations through, mostly, clicking
 
 [Part 4. R and RStudio](#part4)
-   - e.g., adding emphasis to text
-   
+   - integrating the R and RStudio into the workflow
+
+]  
 
 ---
 ## The Workshop &mdash; Organisation
@@ -409,7 +269,7 @@ name: contents-slide
 ---
 class: action
 
-## The Workshop &mdash; Organisation &mdash; Slides
+## The Workshop &mdash; Organisation &mdash; Slides<sup>*</sup>
 
 Slides with this background colour indicate that your action is required, for
 
@@ -421,43 +281,40 @@ Slides with this background colour indicate that your action is required, for
     - there are 20+ exercises
     - these slides have countdown timers
     
+.footnote[
+
+<sup>*</sup> 
+
+]    
+
     
 `r countdown(minutes = 3, seconds = 00, top = 0)`
 
 ---
 ## The Workshop &mdash; Organisation &mdash; Slides
 
-- Codes and texts that go in .inline-c[appear as such &mdash; in a different font, on gray background]
-    - long codes and texts will have their own line(s)
+- Codes and texts that go in programmes .inline-c[appear as such &mdash; in a different font, on gray background]
 
-```md
+--
 
-ggplot(data = df, mapping = aes(x = h5_median, y = h5_index, color = subfield)) +
-       geom_point() +
-       facet_wrap(. ~ branch) +
-       scale_colour_discrete(name = "Journal Type", breaks = c(0, 1), labels = c("Generalist", "Subfield"))    
-
-```
-
----
-## The Workshop &mdash; Organisation &mdash; Slides
-
-- Codes and texts that go in .inline-c[appear as such &mdash; in a different font, on gray background]
-    - long codes and texts will have their own line(s)
+<br>
 
 - Results that come out in .out-t[appear as such &mdash; in the same font, on green background]
-    - except very obvious results, such as screenshots
     
 --
+
+<br>
     
 - Specific sections are .yellow-h[highlighted yellow as such] for emphasis
-    - these could be for anything &mdash; codes and texts in input, results in output, and/or texts on slides
     
 --
+
+<br>
 
 - The slides are designed for self-study as much as for the workshop
     - *accessible*, in substance and form, to go through on your own
-
+    - available at <https://resulumit.com/teaching/rmd_workshop>
+    
 ---
 ## The Workshop &mdash; Aims
 
@@ -491,10 +348,21 @@ class: inverse, center, middle
 ---
 ## Workshop Materials &mdash; Overview
 
-Materials, available at <https://github.com/resulumit/git_workshop/tree/materials>, have the following structure
+.pull-left[
 
-```
+- Materials mimic a simple academic project
 
+  - imagined to introduce a new dataset 
+      - on the Google Scholar rankings of fictitious journals
+      - with a short manuscript
+
+  - in the structure shown on the right
+
+]
+
+.pull-right[
+
+```md
 git_workshop-materials
    |
    |- data
@@ -510,12 +378,13 @@ git_workshop-materials
    |- README.md
 
 ```
+]
 
 ---
 name: download-zip
 class: action
 
-## Course Materials &mdash; Download from the Internet
+## Workshop Materials &mdash; Download from the Internet
 
 - Download the materials from <https://github.com/resulumit/git_workshop/tree/materials>
 
@@ -535,16 +404,7 @@ class: action
      - this renaming will come handy later on
   
 ---
-## Course Materials &mdash; Contents
-
-- `manuscript\paper.docx`
-
-    - the document, formatted in Word but saved as PDF, that we will re-create with R Markdown 
-    - randomly generated sentences, with figures and tables from randomly a generated dataset<sup>*</sup>
-    - key sections in-need of attention are highlighted yellow
-    
----
-## Course Materials &mdash; Contents  
+## Workshop Materials &mdash; Contents &mdash; Data
 
 `data\journals.csv`
 - a dataset created with the `fabricatr` package (Blair et al., 2019), imagined to explore the `Google Scholar` rankings of fictitious journals
@@ -561,11 +421,29 @@ class: action
     - **issues**: number of issues published per year (integers)
 
 ---
-## Course Materials &mdash; Contents  
+## Workshop Materials &mdash; Contents &mdash; Manuscript
 
-- `image\google_scholar.png`
+- `manuscript\journals.docx`
 
-    - a screeenshot image of the [Google Scholar homapage](https://scholar.google.ch/)
+    - the Microsoft Word document, holding the text for the manuscript of the project
+
+--
+
+<br>
+
+- There are two other versions of `paper.docx` in the same folder
+   
+   - saved in PDF and R Markdwon formats respectively    
+   
+       - `manuscript\journals.pdf`
+       - `manuscript\journals.Rmd`
+       
+---
+## Workshop Materials &mdash; Contents &mdash; README
+
+`README.md`
+
+- a Markdown document, holding the basic information about the project
 
 ---
 class: action
@@ -573,47 +451,525 @@ name: install-git
 
 ## Git &mdash; Download from the Internet and Install
 
-- For Windows, install 'Git for Windows', downloading from [https://gitforwindows.org](https://gitforwindows.org/)
-       - select 'Git from the command line and also from 3rd-party software'
-       
-- For Mac, install 'Git', downloading from [https://git-scm.com/downloads](https://git-scm.com/downloads)
+- Git is a software that
+
+   - keeps track of versions of a set of files
+   - is *local* to you, the records are kept on your computer
+   - is free
+
+--
+
+<br>
+
+- To get this software
+
+   - on Windows, install 'Git for Windows', downloading from [https://gitforwindows.org](https://gitforwindows.org/)
+       - select 'Git from the command line and also from 3rd-party software'   
+<br>
+   - on Mac, install 'Git', downloading from [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
 ---
 class: action
 
 ## GitHub &mdash; Open an Account
 
-Sign up for GitHub at [https://github.com](https://github.com/)
+- GitHub is a hosting service, or a website, that
 
-- registering an account is free
+  - keeps a copy of the versions created by Git
+  - is *remote* to you, like the Dropbox website
+  - is, mostly, free
+  
+--
 
-- usernames are public
-      - either choose an anonymous username (e.g., `asdf029348`)
-      - or choose one carefully &mdash; it becomes a part of users' online presence
-      
-- usernames can be changed later
-        
+<br>
+
+- To sign up for this service
+
+   - register an account at [https://github.com](https://github.com/)
+       - registering an account is free
+       - usernames are public, editable
+           - either choose an anonymous username for now
+           - or choose one carefully &mdash; it becomes a part of users' online presence
+
+---
+class: action
+name: install-git
+
+## GitHub Desktop &mdash; Download from the Internet and Install
+
+- GitHub Desktop is a software that
+
+   - makes working with Git and GitHub easier
+
+--
+
+<br>
+
+- To get this software
+
+   - download the file for your operating system from <https://desktop.github.com/>
+   - and install
+
 ---
 ## Other Resources<sup>*</sup>
 
-- Pandoc User's Guide
+- Git Reference Manual
 
-   - available at [https://pandoc.org/MANUAL.html](https://pandoc.org/MANUAL.html)
+   - available at <https://git-scm.com/docs>
 
-- R Markdown: The Definitive Guide (Xie et al., 2019)
+- Pro Git (Chacon and Straub, 2021)
 
-   - open access at [https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown/)
+   - open access at <https://git-scm.com/book/en/v2>
     
 
-- R for Data Science (Wickham and Grolemund, 2019)
+- Git Cheat Sheet
   
-   - open access at [https://r4ds.had.co.nz](https://r4ds.had.co.nz/)
+   - available at <https://training.github.com/downloads/github-git-cheat-sheet.pdf>
    
+- Git Visual Cheat Sheet
+   
+  - available at <https://ndpsoftware.com/git-cheatsheet.html>
+
+---
+name: part2
+class: inverse, center, middle
+
+# Part 2. Command Line
+
 .footnote[
 
-<sup>*</sup> During the workshop, R Markdown Cheat Sheet is likely to be more helpful than these resources, which I recommend to be consulted after the workshop.
+[Back to the contents slide](#contents-slide).
 
 ]
+---
+## Command Line &mdash; Shell
+
+.pull-left[
+
+Type, and enter, your commands into the shell
+
+- also called command line interpreters
+- depends on your operating system
+    - on Windows, use the Git Bash app
+    - on Mac, use the Terminal
+- does not accept keyboard shortcuts
+  - e.g., `ctrl + v` will not paste into shell
+  - but mouse buttons and clicks will work
+
+]
+
+.pull-right[
+
+```{r, echo=FALSE, out.width="95%"}
+knitr::include_graphics("git_workshop_files/images_data/git_bash.png")
+```
+
+
+]
+
+---
+## Command Line &mdash; Git Command Structure
+
+.pull-left[
+
+Git commands 
+- .yellow-h[start with the pre-fix `git`]
+
+]
+
+
+.pull-right[
+
+```md
+
+$ `git`
+
+```
+
+
+]
+
+
+---
+## Command Line &mdash; Git Command Structure
+
+.pull-left[
+
+Git commands 
+- start with the pre-fix `git`
+- might continue with
+  - <span style="background-color: #ffff88;">a command</span>
+
+]
+
+
+.pull-right[
+
+```md
+
+$ git `push`
+
+```
+
+]
+
+---
+## Command Line &mdash; Git Command Structure
+
+.pull-left[
+
+Git commands 
+- start with the pre-fix `git`
+- might continue with
+  - a command
+  - <span style="background-color: #ffff88;">an option</span>
+
+]
+
+
+.pull-right[
+
+```md
+
+$ git `--version`
+
+```
+
+]
+
+---
+## Command Line &mdash; Git Command Structure
+
+.pull-left[
+
+Git commands 
+- start with the pre-fix `git`
+- might continue with
+  - a command
+  - an option   
+<br>
+- might take
+  - <span style="background-color: #ffff88;">one or more arguments</span>
+
+]
+
+
+.pull-right[
+
+```md
+
+$ git push `origin` `master`
+
+```
+
+]
+
+---
+## Command Line &mdash; Git Command Structure
+
+.pull-left-d[
+
+Git commands 
+- start with the pre-fix `git`
+- might continue with
+  - a command
+  - an option   
+<br>
+- might take
+  - one or more arguments
+  - <span style="background-color: #ffff88;">one or more flags</span>
+
+]
+
+
+.pull-right-d[
+
+```md
+$ git commit `-m` "I revised the abstract"
+```
+
+]
+
+---
+## Command Line &mdash; `cd`
+
+.pull-left[
+
+Use the `cd` command to
+
+- .yellow-h[see which directory] are you currently in
+
+]
+
+.pull-right[
+
+```md
+$ `cd`
+```
+
+.out-t[
+/m
+]
+
+]
+
+---
+## Command Line &mdash; `cd`
+
+.pull-left[
+
+Use the `cd` command to
+
+- see which directory are you currently in
+- .yellow-h[move into a directory] that you prefer
+
+]
+
+.pull-right[
+
+```md
+$ cd `../pc/Desktop/resul_git_workshop`
+```
+
+.out-t[
+../pc/Desktop/resul_git_workshop
+]
+
+]
+
+--
+
+<br>
+
+Note that
+
+   - `cd` is not a git command
+       - it does not start with `git`    
+<br>
+   - you can drag and drop the directory onto the shell
+       - instead of typing the full path
+
+---
+## Command Line &mdash; `ls`
+
+.pull-left[
+
+Use the `ls` command to list the contents of
+
+- .yellow-h[the current directory]
+
+]
+
+.pull-right[
+
+```md
+$ ls
+```
+
+.out-t[
+
+data/ &nbsp;  manuscript/  &nbsp; README.md
+
+]
+
+]
+
+---
+## Command Line &mdash; `ls`
+
+.pull-left[
+
+Use the `ls` command to list the contents of
+
+- the current directory
+- .yellow-h[a sub-directory]
+
+]
+
+.pull-right[
+
+```md
+$ ls `data/`
+```
+
+.out-t[
+
+journals.csv
+
+]
+
+]
+
+---
+## Command Line &mdash; `git` `init`
+
+Use the `git` `init` command to turn a directory into a git repository
+
+```md
+$ git init
+```
+
+.out-t[
+
+Initialized empty Git repository in ../pc/Desktop/resul_git_workshop/.git/
+
+]
+
+--
+
+<br>
+
+Note that
+
+- repo is a popuar abbreviation for repository
+- a set of files whose records are kept together, by Git and/or on GitHub
+- it is like a folder, which can keep files and other folders containing files
+
+---
+## Command Line &mdash; `git` `init` &mdash; Notes
+
+The `git` `init` command creates a .yellow-h[hidden] `.git` subdirectory
+
+- will hold the versions of the files and folders tracked in our repository
+    - nothing is being tracked yet
+    - will be tracked as zipped, not meaningful to view at any stage
+
+- not visible with `ls`
+    - but visible with `ls` `-al`
+    - on, on Windows, follow 
+> `File Explorer -> View -> Hidden items`
+
+- hidden, so that it is harder to delete or alter by mistake
+
+---
+## Command Line &mdash; `git` `add`
+
+.pull-left-d[
+
+Use the `git` `add` command to start tracking
+
+ - .yellow-h[a specific file]
+
+]
+
+.pull-right-d[
+
+```md
+$ git add README.md
+```
+
+.out-t[
+
+journals.csv
+
+]
+
+]
+
+---
+## Command Line &mdash; `git` `add`
+
+.pull-left-d[
+
+Use the `git` `add` command to start tracking
+
+ - a specific file
+ - .yellow-h[multiple files]
+]
+
+.pull-right-d[
+
+```md
+$ git add README.md  data/journals.csv
+```
+
+]
+
+---
+## Command Line &mdash; `git` `add`
+
+.pull-left-d[
+
+Use the `git` `add` command to start tracking
+
+ - a specific file
+ - multiple files
+ - .yellow-h[everything] in the directory
+]
+
+.pull-right-d[
+
+```md
+$ git add `.`
+```
+
+]
+
+---
+## Command Line &mdash; `git` `add`  &mdash; Notes
+
+- The `git` `add` command is only the first of the two steps towards saving a version
+
+   - there is no version of them saved yet
+   - the tracked files are said to be .yellow-h[staged], or in the yewllow-h[staged area]
+   
+--
+
+<br>
+
+- The `git` `add` command can be reversed
+   
+   - by one of the following, depending on whether they have been versioned before
+
+```md
+$ git rm --cached README.md
+```
+   
+```md
+$ git rm --staged README.md
+```
+
+---
+## Command Line &mdash; `git` `commit`
+
+- Use the `git` `commit` command to save a version
+   - of the file or files that are already in the staged area
+
+```md
+$ git commit -m "first version"
+```
+
+---
+## Command Line &mdash; `git` `commit`
+
+- Use the `git` `commit` command to save a version
+   - of the file or files that are already in the staged area
+
+```md
+$ git commit -m `"first version"`
+```
+
+<br>
+
+- This command requires a message
+    - a message to yourself and to co-authors to indicate what has changed
+
+---
+## Command Line &mdash; `git` `commit`
+
+Use the `git` `commit` command to save a version
+   - of the file or files that are already in the staged area
+
+```md
+$ git commit `-m` "first version"
+```
+
+- This command requires a message to be registered
+    - a message to yourself and to co-authors to indicate what has changed
+    - types after the .yellow-h[-m] flag
+
+---
+
 
 
 
