@@ -4,7 +4,7 @@
 .Ruserdata
 
 *.Rproj
-*.pdf
-manuscript/journals.docx
-
+presentation/*
+!presentation/git_workshop.Rmd
+!presentation/git_workshop.pdf
 
