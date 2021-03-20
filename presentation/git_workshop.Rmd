@@ -1405,11 +1405,82 @@ $ git remote add `origin` https://github.com/resulumit/git_workshop.git
 
 <br>
 
-Note that this includes
+Note that this line includes
 - a valid address for the external copy to be saved
     - e.g., there is a repository on my GitHub account called `git_workshop`
 - an .yellow-h[arbitrary name for this external repository]
     - traditionally called `origin`, could also be anything else
+
+---
+## Command Line &mdash; `git` `push`
+
+Use the `git` `push` command to save a copy of your .yellow-h[local] repository to its .yellow-h[remote] repository
+
+```md
+$ git push origin master
+```
+
+---
+## Command Line &mdash; `git` `push`
+
+Use the `git` `push` command to save a copy of your local repository to its remote repository 
+
+```md
+$ git push `origin` master
+
+```
+
+<br>
+
+Note that
+- this line includes two arguments
+    - <span style="background-color: #ffff88;">where</span> to push
+    
+---
+## Command Line &mdash; `git` `push`
+
+Use the `git` `push` command to save a copy of your repository to remote 
+
+```md
+$ git push `origin` master
+
+```
+
+<br>
+
+Note that
+- this line includes two arguments
+    - where and <span style="background-color: #ffff88;">what</span> to push
+  
+  
+---
+## Command Line &mdash; `git` `push`
+
+Use the `git` `push` command to save a copy of your repository to remote 
+
+```md
+$ git push `origin` master
+
+```
+
+<br>
+
+Note that
+- this line includes two arguments
+    - where and .yellow-h[what] to push
+- if this is your first time using GitHub, you will be prompted to authenticate
+    - follow the instructions on your screen and in your email
+
+---
+
+
+
+
+
+
+
+
+
 
 
 
