@@ -1439,7 +1439,7 @@ Note that
 ---
 ## Command Line &mdash; `git` `push`
 
-Use the `git` `push` command to save a copy of your repository to remote 
+Use the `git` `push` command to save a copy of your local repository to its remote repository 
 
 ```md
 $ git push `origin` master
@@ -1452,11 +1452,10 @@ Note that
 - this line includes two arguments
     - where and <span style="background-color: #ffff88;">what</span> to push
   
-  
 ---
 ## Command Line &mdash; `git` `push`
 
-Use the `git` `push` command to save a copy of your repository to remote 
+Use the `git` `push` command to save a copy of your local repository to its remote repository
 
 ```md
 $ git push `origin` master
@@ -1473,7 +1472,23 @@ Note that
 
 ---
 
+```
 
+              add &          add &
+             commit         commit
+master: c1 ----------> c2 ----------> c3 ------------------------> c6
+                                      |                            ^
+                                      |                            |
+                                     b|                            |m  
+                                     r|                            |e
+                                     a|                            |r  
+                                     n|                            |g
+                                     c|                            |e
+                                     h|                            |
+                                      |    add &          add &    |
+                                      v   commit         commit    |
+                           branch:   c3 ----------> c4 ----------> c5
+```
 
 
 
