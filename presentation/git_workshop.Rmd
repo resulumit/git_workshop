@@ -825,21 +825,21 @@ class: action
 
 ## Exercises
 
-1) Move into the directory holding workshop materials
+1) Move into the directory holding the workshop materials
    - using the `cd` command
    - hint: after a space, drag and drop the folder onto the shell
 
 <br> 
 
 2) See the contents of the folder in the shell
-   - using the `ls`
+   - using the `ls` command
     
 `r countdown(minutes = 2, seconds = 00, top = 0)`
 
 ---
 ## Command Line &mdash; `git` `init`
 
-Use the `git` `init` command to turn a directory into a git repository
+Use the `git` `init` command to turn a directory into a git repository directory
 
 ```md
 $ git init
@@ -860,7 +860,7 @@ Note that
 - repo is a popular abbreviation for repository
 - a set of files whose records are kept together 
     - by Git on your laptop, and/or on GitHub
-- it is  a folder, which can keep files and other folders containing files
+- it is  a folder, which can keep files and other folders containing files under version control
 
 ---
 ## Command Line &mdash; `git` `init` &mdash; Notes
@@ -870,7 +870,7 @@ Note that
 The `git` `init` command creates a .yellow-h[hidden] `.git` subdirectory, with the structure on the right
 
 - currently mostly empty
-    - nothing is being tracked yet
+    - as nothing is being tracked yet
 
 - not visible with `ls`
     - but visible with `ls` `-al`
@@ -929,8 +929,8 @@ $ git add README.md
 &nbsp;&nbsp;  ├── objects    
 &nbsp;&nbsp;  │ &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ├── pack     
 &nbsp;&nbsp;  │ &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; ├── info     
-&nbsp;&nbsp;  │ &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; └── .yellow-h[0e]    
-&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; └── .yellow-h[42fba1f48dd5cbffc4bc769928c4f7afa40852]     
+&nbsp;&nbsp;  │ &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; └── .yellow-h[8f]    
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; └── .yellow-h[ec6eb5b06dc535825227bd0e6883882075639b]     
 &nbsp;&nbsp; │     
 &nbsp;&nbsp; ├── .yellow-h[index]     
 &nbsp;&nbsp; ... 
@@ -983,7 +983,7 @@ $ git add `.`
 
 - The `git` `add` command alone does not create a version
    - it must be followed by the `git` `commit` command, without which 
-       - there is no version of them saved yet
+       - there is no version saved yet
        - the tracked files are said to be .yellow-h[staged], or in the .yellow-h[staging area]
 
 --
@@ -991,8 +991,8 @@ $ git add `.`
 <br>
 
 - Use the `git` `add ` command (and then, the `git` `commit` command)
-    - not only to add a new file to versions
-    - but also, once that file changes, to create a new version every time
+    - not only to add a new file to be versioned
+    - but also, once that file changes, to snapshot a new version of that file every time
    
 --
 
@@ -1017,6 +1017,27 @@ Use the `git` `commit` command to take a snaphot of, or to version, a repository
 ```md
 $ git commit -m "adding the README file"
 ```
+
+--
+.out-t[
+
+.git     
+&nbsp;&nbsp; │     
+&nbsp;&nbsp; ...     
+&nbsp;&nbsp;  ├── objects    
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── pack     
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── info     
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── 8f          
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── ec6eb5b06dc535825227bd0e6883882075639b      
+&nbsp;&nbsp; │  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │         
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── b2     
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 1ac00c3e97d186c3797908a79846dcde0b305a      
+&nbsp;&nbsp; │  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; │         
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── fd           
+&nbsp;&nbsp;  │ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── cb0ad247419c81076c8aec4021091f3ed630b0     
+&nbsp;&nbsp; ... 
+
+]
 
 ---
 ## Command Line &mdash; `git` `commit`
@@ -1056,8 +1077,8 @@ Note that
 <br>
 
 Recall that
-- committing requires files in the staging area
-   - added with the `git` `add` command
+- committing requires one or more files in the staging area in the first place
+   - staged with the `git` `add` command
 
 ---
 class: action
@@ -1069,7 +1090,7 @@ class: action
 
 <br> 
 
-4) Save the current version of the file
+4) Take a snapshot of the current version of the file
    - using the `git` `commit` command
     
 `r countdown(minutes = 3, seconds = 00, top = 0)`
@@ -1087,6 +1108,7 @@ $ git status
 .out-t[
 
 On branch master    
+
 Untracked files:    
 &nbsp;&nbsp;&nbsp;&nbsp;  (use "git add <file>..." to include in what will be committed)    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        data/    
@@ -1104,39 +1126,290 @@ class: action
 5) Check the status of your repository
 - using the `git` `status` command
 
+<br>
+
 6) Make a change to the `README.md` file, and save
-- by double clicking on it in directory
-   - which will opening it with the default text editor 
-- add a new sentence and/or delete an old one
+- e.g., edit the first sentence on the list
+
+<br>
 
 7) Check the status of your repository again
 
+<br>
+
 8) Commit the new version
    - recall the combination of commands needed
-   
-9) Repeat the exercises above one more time
     
 `r countdown(minutes = 7, seconds = 30, top = 0)`
 
 ---
+## Command Line &mdash; `git` `log`
+
+Use the `git` `log` command to see the changes in reverse order
+
+```md
+$ git log
+```
+
+--
+.out-t[
+
+commit 241b7285a00d47d69655d4a4afcd50989d5b50a8 (HEAD -> master)     
+Author: Resul Umit &#60;resulumit@gmail.com>    
+Date:   Sat Mar 6 09:27:32 2021 +0100    
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;correct the maths error     
+
+commit fdcb0ad247419c81076c8aec4021091f3ed630b0     
+Author: Resul Umit &#60;resulumit@gmail.com>     
+Date:   Sat Mar 6 08:55:21 2021 +0100     
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adding the README file     
+
+]
+
+---
+## Command Line &mdash; `git` `log`
+
+Use the `git` `log` command to see the changes in reverse order
+- the `oneline` flag returns a summary
+
+```md
+$ git log `--oneline`
+```
+
+.out-t[
+
+241b728 (HEAD -> master) correct the maths error    
+fdcb0ad adding the README file
+
+]
+
+--
+
+<br>
+
+Note that
+
+- commit hash is abbreviated to the first 7 digits, enough to uniquely identify each commit
+    - i.e., 241b728 from 241b7285a00d47d69655d4a4afcd50989d5b50a8
+- `HEAD` refers to the snapshot of your last commit
+- `master` is the default branch name
+    - we have only one branch at the moment, but can have multiple
+    - think of a branch as a version of versions, or a copy of the whole repository
+    
+---
+## Command Line &mdash; `git` `diff`
+
+Use the `git` `diff` command to see what has changed, for changes
+- .yellow-h[not staged or committed yet]
+
+
+```md
+$ git diff
+```
+
+.out-t[
+
+diff --git a/README.md b/README.md     
+
+...
+
+--- a/README.md    
++++ b/README.md    
+
+
+...
+
+.yellow-h[-]1. Two times two makes .yellow-h[five].    
+.yellow-h[+]1. Two times two makes .yellow-h[four].
+
+]
 
 
 
+---
+## Command Line &mdash; `git` `diff`
+
+.pull-left[
+Use the `git` `diff` command to see what has changed, for changes
+- not staged or committed yet
+- .yellow-h[staged but not committed yet]
+
+]
+
+.pull-right[
+
+```md
+$ git diff `--staged`
+```
+
+]
+
+---
+## Command Line &mdash; `git` `diff`
+
+.pull-left[
+Use the `git` `diff` command to see what has changed, for changes
+- not staged or committed yet
+- staged but not committed yet
+- .yellow-h[committed since a specific commit]
+
+]
+
+.pull-right[
+
+```md
+$ git diff `fdcb0ad`
+```
+
+```md
+$ git diff `HEAD~2`
+```
+
+]
+
+---
+## Command Line &mdash; `git` `diff`
+
+.pull-left[
+Use the `git` `diff` command to see what has , for changes
+- not staged or committed yet
+- staged but not committed yet
+- committed since a specific commit
+- .yellow-h[between different commits]
+
+]
+
+.pull-right[
+
+```md
+$ git diff `241b728` `1dfb2a5`
+```
+
+```md
+$ git diff `HEAD~1` `HEAD~2`
+```
+
+]
+
+---
+## Command Line &mdash; `git` `diff`
+
+.pull-left[
+Use the `git` `diff` command to see what has changed, for changes
+- not staged or committed yet
+- staged but not committed yet
+- committed since a specific commit
+- between different commits
+- between different commits .yellow-h[in one or more specific files]
+
+]
+
+.pull-right[
+
+```md
+$ git diff 241b728 1dfb2a5 `README.md`
+```
+
+```md
+$ git diff HEAD~1 HEAD~2 `README.md`
+
+```
+]
+
+---
+## Command Line &mdash; `git` `checkout`
+
+.pull-left[
+Use the `git` `checkout` command to switch to a different version
+- .yellow-h[for all files]
+
+]
+
+.pull-right[
+
+```md
+$ git checkout `241b728`
+```
+
+```md
+$ git diff `HEAD~1`
+```
+]
+
+---
+## Command Line &mdash; `git` `checkout`
+
+.pull-left[
+Use the `git` `checkout` command to switch to a different version
+- for all files
+- .yellow-h[for one ore more specific files]
+
+]
+
+.pull-right[
+
+```md
+$ git checkout 241b728 `README.md`
+```
+
+```md
+$ git checkout HEAD~1 `README.md`
+```
+]
+
+---
+## Command Line &mdash; `git` `remote` `add`
 
 
+Use the `git` `remote` `add` command to define a different place, to save an external copy of your repositories
+   - e.g., a repository on GitHub
+       - could also be a directory on an external hard drive
 
 
+```md
+$ git remote add origin https://github.com/resulumit/git_workshop.git 
+```
+
+---
+## Command Line &mdash; `git` `remote` `add`
 
 
+Use the `git` `remote` `add` command to define a different place, to save an external copy of your repositories
+   - e.g., a repository on GitHub
+       - could also be a directory on an external hard drive
 
 
+```md
+$ git remote add origin `https://github.com/resulumit/git_workshop.git` 
+```
+
+<br>
+
+Note that this includes
+- a valid .yellow-h[address for the external copy]
+    - e.g., there is a repository on my GitHub account called `git_workshop`
+    
+---
+## Command Line &mdash; `git` `remote` `add`
+
+Use the `git` `remote` `add` command to define a different place, to save an external copy of your repositories
+   - e.g., a repository on GitHub
+       - could also be a directory on an external hard drive
 
 
+```md
+$ git remote add `origin` https://github.com/resulumit/git_workshop.git
+```
 
+<br>
 
-
-
-
+Note that this includes
+- a valid address for the external copy to be saved
+    - e.g., there is a repository on my GitHub account called `git_workshop`
+- an .yellow-h[arbitrary name for this external repository]
+    - traditionally called `origin`, could also be anything else
 
 
 
