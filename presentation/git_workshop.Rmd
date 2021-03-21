@@ -239,13 +239,13 @@ name: contents-slide
 .pull-right[
 
 [Part 4. What to Version](#part4)
-   - e.g., using the `.gitignore` file
+   - e.g., using a `.gitignore` file
    
 [Part 5. Collaboration](#part5)
    - e.g., working on the same remote repository
 
 [Part 6. Third-Party Applications](#part6)
-   - e.g., using GitHub Desktop for all
+   - e.g., using GitHub Desktop
 
 ]
 
@@ -289,7 +289,7 @@ Slides with this background colour indicate that your action is required, for
     
 - completing the exercises
     - e.g., saving a different version of a file
-    - there are 20+ exercises
+    - there are 30+ exercises
     - these slides have countdown timers
     
 .footnote[
