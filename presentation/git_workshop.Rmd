@@ -14,7 +14,7 @@ output:
       ratio: "16:9"
     seal: false
 ---
-
+name: title-slide
 class: inverse, center, middle
 
 ```{r setup, include=FALSE}
@@ -95,7 +95,6 @@ library(countdown)
 
 </style>
 
-name: title-slide
 
 # Version Control and Collaboration with Git and GitHub
 
