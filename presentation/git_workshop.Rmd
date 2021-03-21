@@ -548,6 +548,21 @@ There are two types of repositories
       - requires a separate application
 
 ---
+## GitHub &mdash; Create a personal access token
+
+- Accessing GitHub through the shell requires using a password
+   - not the same password to login to GitHub website
+   - personal access token (PAT) is the new generation of passwords
+
+--
+
+<br>
+
+- Generate a PAT at <https://github.com/settings/tokens>
+   - note it down for now
+   - on how to caching PATs safely, see <https://happygitwithr.com/credential-caching.html>
+
+---
 class: action
 
 ## GitHub Desktop &mdash; Download from the Internet and Install
@@ -1847,6 +1862,7 @@ Note that
 <br>
 - if this is your first time using GitHub, you will be prompted to authenticate
     - follow the instructions on your screen and in your email
+        - using the PAT that you created in Part 2
 
 ---
 ## Version Control &mdash; `git` `pull`
