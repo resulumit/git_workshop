@@ -2446,45 +2446,60 @@ git config --global --list
 ---
 class: action
 
-## Applications &mdash; RStudio &mdash; Project Setup<sup>*</sup>
+## Applications &mdash; RStudio &mdash; Project Setup
 
-1) Initiate local version control with Git
-
-- from the RStudio menu, follow:
-
-> `Tools -> Version Control -> Project Setup... -> Version Control System -> Git`
+1) Create an RStudio project
 
 
-- after confirming your new repository, and restarting the session, observe that 
+- RStudio allows for dividing your work with R into separate projects, each with own history etc.
 
-   - now there is now a Git tab in RStudio, documenting the differences between you local repository and the one on GitHub. When you change a file, it will appear here.  
-   
-   - your project now includes a `.gitignore` file
-       - this is where you can list files and/or folders to be excluded from being tracked
+  - [this page](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) has more information on why projects are recommended
 
-.footnote[
+<br>
 
-<sup>*</sup> These instructions presume there is an exiting RStudio project to be set up for version control. If not, or to start a new project.
+- Create a new RStudio project, following from the RStudio menu:
 
-]
+> `File -> New Project`
 
 ---
 class: action
 
 ## Applications &mdash; RStudio &mdash; Project Setup
 
-2) Create a new GitHub repository
+2) Initiate local version control with Git
+
+- from the RStudio menu, follow:
+
+> `Tools -> Version Control -> Project Setup... -> Version Control System -> Git`
+
+--
+
+<br>
+
+- after confirming your new repository, and restarting the session, observe that 
+
+   - now there is now a Git tab in RStudio, with buttons for various git commands
+   
+   - your project now includes a `.gitignore` file
+       - untracking some project-specific files
+
+---
+class: action
+
+## Applications &mdash; RStudio &mdash; Project Setup
+
+3) Create a new GitHub repository
 
 - on GitHub, follow:
 
-> `Repositories -> New -> Repository name (e.g., "rwd_workshop") -> Public -> Create repository`
+> `Repositories -> New -> Repository name (e.g., "git_workshop") -> Public -> Create repository`
 
 - observe that
 
-    - repository URLs have the following structure: https://github.com/USER_NAME/REPOSITORY_NAME
+  - repository URLs have the following structure: https://github.com/USER_NAME/REPOSITORY_NAME
     
-        - this is the address to view the repository online
-        - for use in the `Terminal`, the address gets the `.git` extension
+      - this is the address to view the repository online
+      - for use in the `Terminal`, the address gets the `.git` extension
             - e.g., https://github.com/USER_NAME/REPOSITORY_NAME.git
 
 ---
@@ -2492,7 +2507,7 @@ class: action
 
 ## Applications &mdash; RStudio &mdash; Project Setup
 
-3) Push an existing repository
+3) Push an existing repository for the first time
 
 - from the RStudio menu, follow:
 
@@ -2500,7 +2515,7 @@ class: action
 
 - enter the following lines in the `Terminal`, with your username and repository name
 
-```yaml
+```md
 git remote add origin https://github.com/USER_NAME/REPOSITORY_NAME.git
 git add .
 git commit -m "first commit"
@@ -2516,74 +2531,23 @@ git push -u origin master
 - observe that your project files are now online, listed on the GitHub repository
 
 ---
-class: action
-name: version-control-workflow
+## Applications &mdash; RStudio &mdash; Notes
 
-## Applications &mdash; RStudio &mdash; Workflow
+- The principles covered in [Part 3](#part3) to [Part 5](#part5) remain the same
 
-1) Edit and Save 
-
-- work on one or more files under version control
-    - e.g., delete the first sentence of the abstract in `journals.Rmd`, and save it
-    - under the Git tab in RStudio, find the list of files that you edited since the last push
-    - these will have `M`, for modified, as `Status`     
-
+   - e.g., add, commit, and push
+   
 --
 
-2) Commit and Push
+<br>
 
-- tick `Staged`<sup>*</sup>  for one or more files that you would like to commit
-   - enter a `Commit message` that summarises the edits
-   - click `Commit` to create a record of the new version locally to your computer
-   - click `Close -> Push` to push the version to GitHub
+- There are now two alternative ways to proceed
 
-.footnote[
-
-<sup>*</sup> To stage is to add files to be comitted. It allows us to commit files individually or together with other files.
-
-]
-
----
-class: action
-name: git-github-basic-workflow
-
-## Applications &mdash; RStudio &mdash; Workflow
-
-1) Edit and Save 
-
-- work on one or more files under version control
-    - e.g., delete the first sentence of the abstract in `journals.Rmd`, and save it
-    - under the Git tab in RStudio, find the list of files that you edited since the last push
-    - these will have `M`, for modified, as `Status`     
-
-2) Commit and Push
-
-- tick `Staged` for one or more files that you would like to commit
-    - enter a `Commit message` that summarises the edits
-    - click `Commit` to create a record of the new version locally to your computer
-    - click `Close -> Push` to push the version to GitHub
-
-- observe the changes in the Git tab in RStudio and on the GitHub repository
-
----
-class: action
-
-## Exercises
-
-35) Reproducibility and Version Control
-- imagine that, after producing all these tables and figures, and writing up your results, you have decided to exclude journals from Oceania from analysis
-   - hint: use the `filter` function in the data chunk  
-   - create a new version of the manuscript
-   - comit and push to GitHub
-   
-36) Gitignore
-- stop tracking `journals.pdf`
-    - change `.gitignore`
-    - remove `journals.pdf` from cache
-    - comit and push to GitHub
-
-
-`r countdown(minutes = 5, seconds = 00, top = 0)`
+  - typing git commands in the Terminal
+    - as opposed to in a stand alone shell
+    
+  - clicking the buttons on the Git tab
+    - e.g., Diff, Commit
 
 ---
 class: inverse, center, middle
