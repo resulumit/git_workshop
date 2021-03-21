@@ -143,7 +143,7 @@ Resul Umit
 - Half a day, on how to 
 
   - version our academic work
-  - store the different versions securely &mdash; in multiple, separate places
+  - store the different versions securely &mdash; in multiple places
   - collaborate with co-authors &mdash; in writing as well as versioning and storing
 
 --
@@ -153,14 +153,13 @@ Resul Umit
 - Using Git and GitHub, through
    
   - command line tools
-  - GitHub Desktop
-  - R and RStudio
+  - GitHub Desktop, RStudio
   
 --
 
 <br>
 
-- Most useful for projects based on pain text
+- Most useful for those working with pain text
    - e.g., Markdown, rather than Microsoft Word
    - but not exclusively so 
        - projects based on binary files would also benefit
@@ -206,12 +205,12 @@ Resul Umit
            - can also save them elsewhere, such as on GitHub
        - Github keeps a copy online
            - allowing for safe storage, collaboration
-  - is daunting to beginners, but offers many benefits over alternatives
+  - might be daunting to beginners, but offers many benefits over alternatives
 --
 
 <br>
 
-- Alternatives are easier for beginners, but sub-optimal in the long run
+- Alternatives are easier to learn at the beginning, but sub-optimal in the long run
 
    - e.g., editing, renaming, saving, and emailing
    - e.g., using applications or websites such as Dropbox, Google Docs, Overleaf
@@ -222,12 +221,10 @@ Resul Umit
 .pull-left[
 
 [Part 1. Getting the Tools Ready](#part1)
-   - downloading workshop material
-   - installing Git and GitHub Desktop
-   - opening an account on GitHub
+   - e.g., downloading workshop material
 
-[Part 2. Command Line](#part2)
-   - basic operations through typing commands
+[Part 2. Version Control](#part2)
+   - .e.g, basic operations through typing commands
 
 ]
 
@@ -236,35 +233,41 @@ name: contents-slide
 
 .pull-right[
 
-[Part 3. GitHub Desktop](#part3)
-   - basic operations through, mostly, clicking
+[Part 3. What to Version](#part3)
+   - e.g., using `.gitignore`
 
-[Part 4. R and RStudio](#part4)
-   - integrating the R and RStudio into the workflow
+[Part 4. Third-Party Applications](#part4)
+   - e.g., GitHub Desktop
 
 ]  
 
 ---
 ## The Workshop &mdash; Organisation
 
-- Sit in groups of two
+- ~~Sit in groups of two~~
 
   - participants learn as much from their partner as from instructors
   - play the role of co-authors
   
 --
 
+<br>
+
 - Type, rather than copy and paste, the code that you will find on these slides
 
   - typing is a part of the learning process
+  - keyboard shortcuts for copy/paste does not work in the shell
   
 --
 
+<br>
+
 - When you have a question
 
-  - ask your partner
-  - google together
-  - ask me
+  - ~~ask your partner~~
+  - ~~google together~~
+  - if it cannot wait, turn your microphone on and ask
+  - if it can wait, type it in the chat
 
 ---
 class: action
@@ -283,17 +286,17 @@ Slides with this background colour indicate that your action is required, for
     
 .footnote[
 
-<sup>*</sup> 
+<sup>*</sup> These slides are and will remain available at  <https://resulumit.com/teaching/git_workshop.html>.
 
 ]    
 
     
-`r countdown(minutes = 3, seconds = 00, top = 0)`
+`r countdown(minutes = 1, seconds = 00, top = 0)`
 
 ---
 ## The Workshop &mdash; Organisation &mdash; Slides
 
-- Codes and texts that go in programmes .inline-c[appear as such &mdash; in a different font, on gray background]
+- Codes and texts that go in .inline-c[appear as such &mdash; in a different font, on gray background]
 
 --
 
@@ -313,7 +316,6 @@ Slides with this background colour indicate that your action is required, for
 
 - The slides are designed for self-study as much as for the workshop
     - *accessible*, in substance and form, to go through on your own
-    - available at <https://resulumit.com/teaching/rmd_workshop>
     
 ---
 ## The Workshop &mdash; Aims
@@ -493,7 +495,32 @@ class: action
 
 ---
 class: action
-name: install-git
+
+## GitHub &mdash; Create a new GitHub repository
+
+- Repository is a folder, or directory, which can keep files and other folders containing files under version control
+    - a set of files whose records are kept together 
+    - repo is a popular abbreviation for repository
+
+--
+name: create-github-repo
+
+<br>
+
+- To create a repo, on GitHub, follow:
+
+> `Repositories -> New -> Repository name (e.g., "git_workshop") -> Public -> Create repository`
+
+- observe that
+
+    - repository URLs have the following structure: https://github.com/USER_NAME/REPOSITORY_NAME
+    
+        - this is the address to view the repository online
+        - for use in the `Terminal`, the address gets the `.git` extension
+            - e.g., https://github.com/USER_NAME/REPOSITORY_NAME.git
+
+---
+class: action
 
 ## GitHub Desktop &mdash; Download from the Internet and Install
 
@@ -502,6 +529,7 @@ name: install-git
    - makes working with Git and GitHub easier
 
 --
+name: install-git
 
 <br>
 
@@ -534,7 +562,7 @@ name: install-git
 name: part2
 class: inverse, center, middle
 
-# Part 2. Command Line
+# Part 2. Version Control
 
 .footnote[
 
@@ -542,7 +570,7 @@ class: inverse, center, middle
 
 ]
 ---
-## Command Line &mdash; Shell
+## Version Control &mdash; Shell
 
 .pull-left[
 
@@ -568,7 +596,7 @@ knitr::include_graphics("git_workshop_files/images_data/git_bash.png")
 ]
 
 ---
-## Command Line &mdash; Git Command Structure
+## Version Control &mdash; Git Command Structure
 
 .pull-left[
 
@@ -591,7 +619,7 @@ $ `git`
 
 
 ---
-## Command Line &mdash; Git Command Structure
+## Version Control &mdash; Git Command Structure
 
 .pull-left[
 
@@ -614,7 +642,7 @@ $ git `push`
 ]
 
 ---
-## Command Line &mdash; Git Command Structure
+## Version Control &mdash; Git Command Structure
 
 .pull-left[
 
@@ -638,7 +666,7 @@ $ git `--version`
 ]
 
 ---
-## Command Line &mdash; Git Command Structure
+## Version Control &mdash; Git Command Structure
 
 .pull-left[
 
@@ -665,7 +693,7 @@ $ git push `origin` `master`
 ]
 
 ---
-## Command Line &mdash; Git Command Structure
+## Version Control &mdash; Git Command Structure
 
 .pull-left-d[
 
@@ -693,7 +721,7 @@ $ git commit `-m` "I revised the abstract"
 ---
 class: action
 
-## Command Line &mdash; config
+## Version Control &mdash; config
 
 - Use the `config` command to introduce yourself to Git
    - with the email address that you have used to sign up for GitHub
@@ -711,7 +739,7 @@ git config --global --list
 ```
 
 ---
-## Command Line &mdash; `cd`
+## Version Control &mdash; `cd`
 
 .pull-left[
 
@@ -734,7 +762,7 @@ $ `cd`
 ]
 
 ---
-## Command Line &mdash; `cd`
+## Version Control &mdash; `cd`
 
 .pull-left[
 
@@ -770,7 +798,7 @@ Note that
        - instead of typing the full path
 
 ---
-## Command Line &mdash; `ls`
+## Version Control &mdash; `ls`
 
 .pull-left[
 
@@ -795,7 +823,7 @@ data/ &nbsp;  manuscript/  &nbsp; README.md
 ]
 
 ---
-## Command Line &mdash; `ls`
+## Version Control &mdash; `ls`
 
 .pull-left[
 
@@ -837,7 +865,7 @@ class: action
 `r countdown(minutes = 2, seconds = 00, top = 0)`
 
 ---
-## Command Line &mdash; `git` `init`
+## Version Control &mdash; `git` `init`
 
 Use the `git` `init` command to turn a directory into a git repository directory
 
@@ -851,19 +879,8 @@ Initialized empty Git .yellow-h[repository] in ../resul_git_workshop/.git/
 
 ]
 
---
-
-<br>
-
-Note that
-
-- repo is a popular abbreviation for repository
-- a set of files whose records are kept together 
-    - by Git on your laptop, and/or on GitHub
-- it is  a folder, which can keep files and other folders containing files under version control
-
 ---
-## Command Line &mdash; `git` `init` &mdash; Notes
+## Version Control &mdash; `git` `init` &mdash; Notes
 
 .pull-left-c[
 
@@ -905,7 +922,7 @@ The `git` `init` command creates a .yellow-h[hidden] `.git` subdirectory, with t
 
 
 ---
-## Command Line &mdash; `git` `add`
+## Version Control &mdash; `git` `add`
 
 .pull-left-d[
 
@@ -940,7 +957,7 @@ $ git add README.md
 ]
 
 ---
-## Command Line &mdash; `git` `add`
+## Version Control &mdash; `git` `add`
 
 .pull-left-d[
 
@@ -959,7 +976,7 @@ $ git add README.md  data/journals.csv
 ]
 
 ---
-## Command Line &mdash; `git` `add`
+## Version Control &mdash; `git` `add`
 
 .pull-left-d[
 
@@ -979,7 +996,7 @@ $ git add `.`
 ]
 
 ---
-## Command Line &mdash; `git` `add`  &mdash; Notes
+## Version Control &mdash; `git` `add`  &mdash; Notes
 
 - The `git` `add` command alone does not create a version
    - it must be followed by the `git` `commit` command, without which 
@@ -1010,7 +1027,7 @@ $ git rm --staged README.md
 ```
 
 ---
-## Command Line &mdash; `git` `commit`
+## Version Control &mdash; `git` `commit`
 
 Use the `git` `commit` command to take a snaphot of, or to version, a repository
 
@@ -1040,7 +1057,7 @@ $ git commit -m "adding the README file"
 ]
 
 ---
-## Command Line &mdash; `git` `commit`
+## Version Control &mdash; `git` `commit`
 
 Use the `git` `commit` command to take a snaphot of, or to version, a repository
 - with the changes in the staging area
@@ -1056,7 +1073,7 @@ Note that
     - to yourself and to co-authors to indicate what has changed
 
 ---
-## Command Line &mdash; `git` `commit`
+## Version Control &mdash; `git` `commit`
 
 Use the `git` `commit` command to take a snaphot of, or to version, a repository
 - with the changes in the staging area
@@ -1096,7 +1113,7 @@ class: action
 `r countdown(minutes = 3, seconds = 00, top = 0)`
 
 ---
-## Command Line &mdash; `git` `status`
+## Version Control &mdash; `git` `status`
 
 Use the `git` `status` command to check the status of your repository
    - e.g., are there any untracked, modified, deleted, staged etc. files?
@@ -1143,7 +1160,7 @@ class: action
 `r countdown(minutes = 7, seconds = 30, top = 0)`
 
 ---
-## Command Line &mdash; `git` `log`
+## Version Control &mdash; `git` `log`
 
 Use the `git` `log` command to see the changes in reverse order
 
@@ -1169,7 +1186,7 @@ Date:   Sat Mar 6 08:55:21 2021 +0100
 ]
 
 ---
-## Command Line &mdash; `git` `log`
+## Version Control &mdash; `git` `log`
 
 Use the `git` `log` command to see the changes in reverse order
 - the `oneline` flag returns a summary
@@ -1199,12 +1216,12 @@ Note that
     - think of a branch as a version of versions, or a copy of the whole repository
     
 ---
-## Command Line &mdash; `git` `branch`
+## Version Control &mdash; `git` `branch`
 
 Use the `git` `branch` command to create a copy of your repository, on your local machine
 
 ```md
-$ git branch coding_branch
+$ git branch `coding_branch`
 ```
 .out-t[
 
@@ -1223,12 +1240,12 @@ master: c1 ----------> c2 ----------> c3
                                      h|                            
                                       |  
                                       v    
-                      coding_branch:  c3 
+                      `coding_branch`:  c3 
 ```
 ]
 
 ---
-## Command Line &mdash; `git` `branch`
+## Version Control &mdash; `git` `branch`
 
 Use the `git` `branch` command to create a copy of your repository, on your local machine
 
@@ -1239,10 +1256,12 @@ $ git branch `coding_branch`
 <br>
 
 Note that 
+
 - this line takes an argument for .yellow-h[branch name]
+    - the default repository is called master
 
 ---
-## Command Line &mdash; `git` `branch`
+## Version Control &mdash; `git` `branch`
 
 Use the `git` `branch` command to create a copy of your repository, on your local machine
 
@@ -1253,7 +1272,10 @@ $ git branch coding_branch
 <br>
 
 Note that 
+
 - this line takes an argument for branch name
+    - the default repository is called master     
+<br>
 - we are still in the master branch
    - check which branch are you in with the following command
 
@@ -1262,13 +1284,12 @@ $ git branch -v
 ```
 
 ---
-## Command Line &mdash; `git` `branch` &mdash; Notes
+## Version Control &mdash; `git` `branch` &mdash; Notes
 
 - Branches can be developped
    - .yellow-h[one at a time]
 
 ```
-
               add &          add &
              commit         commit
 master: c1 ----------> c2 ----------> c3
@@ -1287,7 +1308,7 @@ master: c1 ----------> c2 ----------> c3
 ```
 
 ---
-## Command Line &mdash; `git` `branch` &mdash; Notes
+## Version Control &mdash; `git` `branch` &mdash; Notes
 
 - Branches can be developped
    - one at a time
@@ -1316,7 +1337,7 @@ master: c1 ----------> c2 ----------> c3 ----------> c5
 ```
 
 ---
-## Command Line &mdash; `git` `diff`
+## Version Control &mdash; `git` `diff`
 
 Use the `git` `diff` command to see what has changed, for changes
 - .yellow-h[not staged or committed yet]
@@ -1344,7 +1365,7 @@ diff --git a/README.md b/README.md
 ]
 
 ---
-## Command Line &mdash; `git` `diff`
+## Version Control &mdash; `git` `diff`
 
 .pull-left[
 Use the `git` `diff` command to see what has changed, for changes
@@ -1362,7 +1383,7 @@ $ git diff `--staged`
 ]
 
 ---
-## Command Line &mdash; `git` `diff`
+## Version Control &mdash; `git` `diff`
 
 .pull-left[
 Use the `git` `diff` command to see what has changed, for changes
@@ -1385,7 +1406,7 @@ $ git diff `HEAD~2`
 ]
 
 ---
-## Command Line &mdash; `git` `diff`
+## Version Control &mdash; `git` `diff`
 
 .pull-left[
 Use the `git` `diff` command to see what has , for changes
@@ -1409,7 +1430,7 @@ $ git diff `HEAD~1` `HEAD~2`
 ]
 
 ---
-## Command Line &mdash; `git` `diff`
+## Version Control &mdash; `git` `diff`
 
 .pull-left[
 Use the `git` `diff` command to see what has changed, for changes
@@ -1434,7 +1455,7 @@ $ git diff HEAD~1 HEAD~2 `README.md`
 ]
 
 ---
-## Command Line &mdash; `git` `diff`
+## Version Control &mdash; `git` `diff`
 
 .pull-left[
 Use the `git` `diff` command to see what has changed, for changes
@@ -1456,7 +1477,7 @@ $ git diff `master..coding_branch`
 
 
 ---
-## Command Line &mdash; `git` `checkout`
+## Version Control &mdash; `git` `checkout`
 
 .pull-left[
 Use the `git` `checkout` command to switch to
@@ -1476,7 +1497,7 @@ $ git diff `HEAD~1`
 ]
 
 ---
-## Command Line &mdash; `git` `checkout`
+## Version Control &mdash; `git` `checkout`
 
 .pull-left[
 Use the `git` `checkout` command to switch to
@@ -1497,7 +1518,7 @@ $ git checkout HEAD~1 `README.md`
 ]
 
 ---
-## Command Line &mdash; `git` `checkout`
+## Version Control &mdash; `git` `checkout`
 
 .pull-left[
 Use the `git` `checkout` command to switch to
@@ -1535,15 +1556,15 @@ class: action
 
 14) Switch back to the master branch
 
-15) Check the differences between the brances
+15) Check the differences between the branches
 - using the `git` `diff` command
     
 `r countdown(minutes = 7, seconds = 30, top = 0)`
 
 ---
-## Command Line &mdash; `git` `merge`
+## Version Control &mdash; `git` `merge`
 
-Use the `git` `merge` command to merge two branches
+Use the `git` `merge` command to integrate different versions of your repository into a single version
 
 ```md
 $ git merge coding_branch
@@ -1572,13 +1593,48 @@ master: c1 ----------> c2 ----------> c3 ------------------------> c6
 ```
 ]
 
+---
+## Version Control &mdash; `git` `merge`
+
+Use the `git` `merge` command to integrate different versions of your repository into a single version
+
+```md
+$ git merge `coding_branch`
+```
+
+<br>
+
+Note that
+
+- this line includes one argument
+   - <span style="background-color: #ffff88;">from where</span> to merge
+   
+---
+## Version Control &mdash; `git` `merge`
+
+Use the `git` `merge` command to integrate different versions of your repository into a single version
+
+```md
+$ git merge `coding_branch`
+```
+
+<br>
+
+Note that
+
+- this line includes one argument
+   - <span style="background-color: #ffff88;">from where</span> to merge      
+<br>
+- this merges into the current branch
+    - move into the desired branch first
+        - using the `git` `checkout` command
 
 ---
-## Command Line &mdash; `git` `merge` &mdash; Notes
+## Version Control &mdash; `git` `merge` &mdash; Conflicts
 
 - Merge is done automatically if there are no conflicts
-   - e.g., there are no edits on the same line of the same document in different branches
-   - no human intervention needed
+   - conflicts emerge when versions to be merged include edits *on the same line of the same file*
+  - edits on different lines are not a problem as changes are tracked line by line    
    
 --
 
@@ -1601,7 +1657,30 @@ master: c1 ----------> c2 ----------> c3 ------------------------> c6
 ]
 
 ---
-## Command Line &mdash; `git` `remote` `add`
+class: action
+
+## Exercises
+
+16) Merge the coding_branch into the master branch
+
+<br>
+
+17) Make a change on the same line of the README.md in both branches
+
+<br>
+
+18) Try to merge the coding_branch into the master branch
+- hint: this will lead to a merge conflict
+
+<br>
+
+19) Solve the conflict and commit
+
+    
+`r countdown(minutes = 7, seconds = 30, top = 0)`
+
+---
+## Version Control &mdash; `git` `remote` `add`
 
 
 Use the `git` `remote` `add` command to define a different place, to save an backup of your repositories
@@ -1614,7 +1693,7 @@ $ git remote add origin https://github.com/resulumit/git_workshop.git
 ```
 
 ---
-## Command Line &mdash; `git` `remote` `add`
+## Version Control &mdash; `git` `remote` `add`
 
 
 Use the `git` `remote` `add` command to define a different place, to save an external copy of your repositories
@@ -1633,7 +1712,7 @@ Note that this includes
     - e.g., there is a repository on my GitHub account called `git_workshop`
     
 ---
-## Command Line &mdash; `git` `remote` `add`
+## Version Control &mdash; `git` `remote` `add`
 
 Use the `git` `remote` `add` command to define a different place, to save an external copy of your repositories
    - e.g., a repository on GitHub
@@ -1653,7 +1732,7 @@ Note that this line includes
     - traditionally called `origin`, could also be anything else
 
 ---
-## Command Line &mdash; `git` `push`
+## Version Control &mdash; `git` `push`
 
 Use the `git` `push` command to save a copy of your .yellow-h[local] repository to its .yellow-h[remote] repository
 
@@ -1662,7 +1741,7 @@ $ git push origin master
 ```
 
 ---
-## Command Line &mdash; `git` `push`
+## Version Control &mdash; `git` `push`
 
 Use the `git` `push` command to save a copy of your local repository to its remote repository 
 
@@ -1680,7 +1759,7 @@ Note that
         - already defined with the `git` `remote` `add` command
     
 ---
-## Command Line &mdash; `git` `push`
+## Version Control &mdash; `git` `push`
 
 Use the `git` `push` command to save a copy of your local repository to its remote repository 
 
@@ -1698,7 +1777,7 @@ Note that
         - could be any branch
   
 ---
-## Command Line &mdash; `git` `push`
+## Version Control &mdash; `git` `push`
 
 Use the `git` `push` command to save a copy of your local repository to its remote repository
 
@@ -1714,15 +1793,11 @@ Note that
 - this line includes two arguments
     - where and what to push    
 <br>
-- pushing involves merging
-    - 
-
-
-if this is your first time using GitHub, you will be prompted to authenticate
-    - follow the instructions on your screen and in your email
+- pushing will be rejected if the remote repository has edits that the local repository does not
+    - necessitating a pull first
 
 ---
-## Command Line &mdash; `git` `push`
+## Version Control &mdash; `git` `push`
 
 Use the `git` `push` command to save a copy of your local repository to its remote repository
 
@@ -1736,27 +1811,113 @@ $ git push `origin` master
 Note that
 
 - this line includes two arguments
-    - where and what to push    
+    - where and what to push     
+<br>
+- pushing will be rejected if the remote repository has edits that the local repository does not
+    - necessitating a pull first     
 <br>
 - if this is your first time using GitHub, you will be prompted to authenticate
     - follow the instructions on your screen and in your email
 
+---
+## Version Control &mdash; `git` `pull`
+
+Use the `git` `pull` command to get a copy of the .yellow-h[remote] repository, and merge it into the .yellow-h[local] repository
+
+```md
+$ git pull origin master
+
+```
+
+---
+## Version Control &mdash; `git` `pull`
+
+Use the `git` `pull` command to get a copy of the remote repository, and merge it into the local repository
+
+```md
+$ git pull `origin` master
+
+```
+
+<br>
+
+Note that
+
+- this line includes two arguments
+    - <span style="background-color: #ffff88;">where</span> to pull from
+        - already defined with the `git` `remote` `add` command
+
+---
+## Version Control &mdash; `git` `pull`
+
+Use the `git` `pull` command to get a copy of the remote repository, and merge it into the local repository
+
+```md
+$ git pull origin `master`
+
+```
+
+<br>
+
+Note that
+
+- this line includes two arguments
+    - where and <span style="background-color: #ffff88;">what</span> to pull from
+        - could be any branch
+
+---
+## Version Control &mdash; `git` `pull`
+
+Use the `git` `pull` command to get a copy of the remote repository, and merge it into the local repository
+
+```md
+$ git pull origin `master`
+
+```
+
+<br>
+
+Note that
+
+- this line includes two arguments
+    - where and what to pull from    
+<br>
+- pulling involves fetching and merging
+    - might lead to conflicts, and necessitate solving them manually
+
+---
+class: action
+
+## Exercises
+
+20) Add a remote repository
+- e.g., the [GitHub repository that you have already created](#create-github-repo)
+- using the `git` `remote` `add` command
+
+21) Push the master branch to GitHub
+- using the `git` `push` command
+- observe the repository on GitHub
+
+22) Commit a change to the README.md file on GitHub
+- by clicking on the pen symbol
 
 
+23) Pull the changes to the local repository
+- using the `git` `pull` command
+    
+`r countdown(minutes = 7, seconds = 30, top = 0)`
 
+---
+name: part2
+class: inverse, center, middle
 
+# Part 2. What to Version
 
+.footnote[
 
+[Back to the contents slide](#contents-slide).
 
-
-
-
-
-
-
-
-
-
+]
 
 
 
