@@ -103,7 +103,7 @@ name: title-slide
 
 ### Resul Umit
 
-### March 2021
+### 22 March 2021
 
 .footnote[
 
