@@ -1199,6 +1199,123 @@ Note that
     - think of a branch as a version of versions, or a copy of the whole repository
     
 ---
+## Command Line &mdash; `git` `branch`
+
+Use the `git` `branch` command to create a copy of your repository, on your local machine
+
+```md
+$ git branch coding_branch
+```
+.out-t[
+
+```
+
+              add &          add &
+             commit         commit
+master: c1 ----------> c2 ----------> c3
+                                      |                            
+                                      |                            
+                                     b|                              
+                                     r|                            
+                                     a|                              
+                                     n|                            
+                                     c|                            
+                                     h|                            
+                                      |  
+                                      v    
+                      coding_branch:  c3 
+```
+]
+
+---
+## Command Line &mdash; `git` `branch`
+
+Use the `git` `branch` command to create a copy of your repository, on your local machine
+
+```md
+$ git branch `coding_branch`
+```
+
+<br>
+
+Note that 
+- this line takes an argument for .yellow-h[branch name]
+
+---
+## Command Line &mdash; `git` `branch`
+
+Use the `git` `branch` command to create a copy of your repository, on your local machine
+
+```md
+$ git branch coding_branch
+```
+
+<br>
+
+Note that 
+- this line takes an argument for branch name
+- we are still in the master branch
+   - check which branch are you in with the following command
+
+```md
+$ git branch -v
+```
+
+---
+## Command Line &mdash; `git` `branch` &mdash; Notes
+
+- Branches can be developped
+   - .yellow-h[one at a time]
+
+```
+
+              add &          add &
+             commit         commit
+master: c1 ----------> c2 ----------> c3
+                                      |                             
+                                      |                             
+                                     b|                               
+                                     r|                             
+                                     a|                               
+                                     n|                             
+                                     c|                             
+                                     h|                             
+                                      |    add &          add &     
+                                      v   commit         commit     
+                     coding_branch:   c3 ----------> c4 ----------> c5
+                              
+```
+
+---
+## Command Line &mdash; `git` `branch` &mdash; Notes
+
+- Branches can be developped
+   - one at a time
+   - .yellow-h[at the same time]
+
+
+```
+
+              add &          add &          add &
+             commit         commit         commit
+master: c1 ----------> c2 ----------> c3 ----------> c5
+                                      |                             
+                                      |                             
+                                     b|                               
+                                     r|                             
+                                     a|                               
+                                     n|                             
+                                     c|                             
+                                     h|                             
+                                      |    add &          add &     
+                                      v   commit         commit     
+                     coding_branch:   c3 ----------> c4 ----------> c5
+                              
+
+
+```
+
+---
 ## Command Line &mdash; `git` `diff`
 
 Use the `git` `diff` command to see what has changed, for changes
@@ -1225,8 +1342,6 @@ diff --git a/README.md b/README.md
 .yellow-h[+]1. Two times two makes .yellow-h[four].
 
 ]
-
-
 
 ---
 ## Command Line &mdash; `git` `diff`
@@ -1319,11 +1434,33 @@ $ git diff HEAD~1 HEAD~2 `README.md`
 ]
 
 ---
+## Command Line &mdash; `git` `diff`
+
+.pull-left[
+Use the `git` `diff` command to see what has changed, for changes
+- not staged or committed yet
+- staged but not committed yet
+- committed since a specific commit
+- between different commits
+- between different commits in one or more specific files
+- between different .yellow-h[branches]
+
+]
+
+.pull-right[
+
+```md
+$ git diff `master..coding_branch`
+```
+]
+
+
+---
 ## Command Line &mdash; `git` `checkout`
 
 .pull-left[
-Use the `git` `checkout` command to switch to a different version
-- .yellow-h[for all files]
+Use the `git` `checkout` command to switch to
+- .yellow-h[a different version off all files in the same branch]
 
 ]
 
@@ -1342,9 +1479,9 @@ $ git diff `HEAD~1`
 ## Command Line &mdash; `git` `checkout`
 
 .pull-left[
-Use the `git` `checkout` command to switch to a different version
-- for all files
-- .yellow-h[for one ore more specific files]
+Use the `git` `checkout` command to switch to
+- a different version off all files in the same branch
+- .yellow-h[a different version of one ore more specific files]
 
 ]
 
@@ -1360,10 +1497,114 @@ $ git checkout HEAD~1 `README.md`
 ]
 
 ---
+## Command Line &mdash; `git` `checkout`
+
+.pull-left[
+Use the `git` `checkout` command to switch to
+- a different version off all files in the same branch
+- a different version of one ore more specific files
+- .yellow-h[a different branch]
+
+]
+
+.pull-right[
+
+```md
+$ git checkout coding_branch
+```
+]
+
+---
+class: action
+
+## Exercises
+
+9) Make sure there is nothing to commit in the master branch
+- using the `git` `status` command to see
+
+10) Make a new branch and switch to it
+- using the `git` `branch` and  `git` `checkout` commands
+
+11) Start tracking the `data/journals.csv` file in this new branch
+
+12) Commit the new version to this branch
+
+13) Rename the first variable of the dataset, stage, and commit
+- e.g., from `name` to `journal_name`
+- both in `README.md` and `data/journals.csv`
+
+14) Switch back to the master branch
+
+15) Check the differences between the brances
+- using the `git` `diff` command
+    
+`r countdown(minutes = 7, seconds = 30, top = 0)`
+
+---
+## Command Line &mdash; `git` `merge`
+
+Use the `git` `merge` command to merge two branches
+
+```md
+$ git merge coding_branch
+```
+
+
+.out-t[
+```
+              add &          add &
+             commit         commit
+master: c1 ----------> c2 ----------> c3 ------------------------> c6
+                                      |                             ^
+                                      |                             |
+                                     b|                             |m  
+                                     r|                             |e
+                                     a|                             |r  
+                                     n|                             |g
+                                     c|                             |e
+                                     h|                             |
+                                      |    add &          add &     |
+                                      v   commit         commit     |
+                     coding_branch:   c3 ----------> c4 ----------> c5
+                              
+
+
+```
+]
+
+
+---
+## Command Line &mdash; `git` `merge` &mdash; Notes
+
+- Merge is done automatically if there are no conflicts
+   - e.g., there are no edits on the same line of the same document in different branches
+   - no human intervention needed
+   
+--
+
+<br>
+
+- Merge conflicts require human intervention
+   - by editing the conflicting lines
+       - after the merge attempt
+       - marked in the document with the conflict
+   - and commiting the corrected file 
+   
+
+.out-t[
+&#60;&#60;&#60;&#60;&#60;&#60;&#60;&#60; HEAD       
+1&#46; Two times two makes five.         
+&#61;&#61;&#61;&#61;&#61;&#61;&#61;         
+1&#46; Two times two makes tree.       
+&#62;&#62;&#62;&#62;&#62;&#62;&#62;&#62; new_branch     
+
+]
+
+---
 ## Command Line &mdash; `git` `remote` `add`
 
 
-Use the `git` `remote` `add` command to define a different place, to save an external copy of your repositories
+Use the `git` `remote` `add` command to define a different place, to save an backup of your repositories
    - e.g., a repository on GitHub
        - could also be a directory on an external hard drive
 
@@ -1433,8 +1674,10 @@ $ git push `origin` master
 <br>
 
 Note that
+
 - this line includes two arguments
     - <span style="background-color: #ffff88;">where</span> to push
+        - already defined with the `git` `remote` `add` command
     
 ---
 ## Command Line &mdash; `git` `push`
@@ -1442,15 +1685,17 @@ Note that
 Use the `git` `push` command to save a copy of your local repository to its remote repository 
 
 ```md
-$ git push `origin` master
+$ git push origin `master`
 
 ```
 
 <br>
 
 Note that
+
 - this line includes two arguments
     - where and <span style="background-color: #ffff88;">what</span> to push
+        - could be any branch
   
 ---
 ## Command Line &mdash; `git` `push`
@@ -1465,30 +1710,48 @@ $ git push `origin` master
 <br>
 
 Note that
+
 - this line includes two arguments
-    - where and .yellow-h[what] to push
-- if this is your first time using GitHub, you will be prompted to authenticate
+    - where and what to push    
+<br>
+- pushing involves merging
+    - 
+
+
+if this is your first time using GitHub, you will be prompted to authenticate
     - follow the instructions on your screen and in your email
 
 ---
+## Command Line &mdash; `git` `push`
+
+Use the `git` `push` command to save a copy of your local repository to its remote repository
+
+```md
+$ git push `origin` master
 
 ```
 
-              add &          add &
-             commit         commit
-master: c1 ----------> c2 ----------> c3 ------------------------> c6
-                                      |                            ^
-                                      |                            |
-                                     b|                            |m  
-                                     r|                            |e
-                                     a|                            |r  
-                                     n|                            |g
-                                     c|                            |e
-                                     h|                            |
-                                      |    add &          add &    |
-                                      v   commit         commit    |
-                           branch:   c3 ----------> c4 ----------> c5
-```
+<br>
+
+Note that
+
+- this line includes two arguments
+    - where and what to push    
+<br>
+- if this is your first time using GitHub, you will be prompted to authenticate
+    - follow the instructions on your screen and in your email
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1706,19 +1969,16 @@ git rm -r --cached .
 
 
 ---
-name: part8
+name: part4
 class: inverse, center, middle
 
-# Part 8. Using Version Control
+# Part 4. R & RStudio
 
 .footnote[
 
 [Back to the contents slide](#contents-slide).
 
 ]
-
----
-
 
 ---
 ## Version Control &mdash; Git and GitHub
@@ -1936,19 +2196,6 @@ class: action
 
 `r countdown(minutes = 5, seconds = 00, top = 0)`
 
----
-name: part9
-class: inverse, center, middle
-
-# Part 9. Collaborating with Others
-
-.footnote[
-
-[Back to the contents slide](#contents-slide).
-
-]
-
----
 
 ---
 ## Collaboration &mdash; Git and GitHub &mdash; Project Setup
@@ -2237,42 +2484,8 @@ class: inverse, center, middle
 ---
 ## References
 
-Allaire, J. J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W. and Iannone, R. (2020). [rmarkdown: Dynamic documents for R](https://cran.r-project.org/web/packages/rmarkdown/index.html). R package, version 2.1.
-
 Blair, G., Cooper, J., Coppock, A., Humphreys, M., Rudkin, A. and Fultz, N. (2019). [fabricatr: Imagine your data before you collect it](https://cran.r-project.org/web/packages/fabricatr/index.html). R package, version 0.10.0.
 
-Carlisle, D., Fairbairns, R., Harris, E. and Tobin, G. (2011). [setspace – Set space between lines](https://ctan.org/pkg/setspace). LaTeX package, version 6.7a.
-
-Dowle, M. and Srinivasan, A. (2019). [data.table: Extension of 'data.frame'](https://cran.r-project.org/web/packages/data.table/index.html). R package, version 1.12.8.
-
-Gagolewski, M. (2020). [stringi: Character String Processing Facilities](https://cran.r-project.org/web/packages/stringi/index.html). R package, version 1.4.6.
-
-Hlavac, M. (2018). [stargazer: Well-formatted regression and summary statistics tables](https://cran.r-project.org/web/packages/stargazer/index.html). R package, version 5.2.2.
-
-Sievert, C., Parmer, C.,  Hocking, T., Chamberlain, S., Ram, K., Corvellec, M., & Despouy, P. (2020). [plotly: Create Interactive Web Graphics via 'plotly.js'](https://cran.r-project.org/web/packages/plotly/index.html). R package, version 4.9.3.
-
-Wickham, H. and Grolemund, G. (2019). R for data science. O'Reilly. Open access at [https://r4ds.had.co.nz](https://r4ds.had.co.nz/).
-
-Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H. and Dunnington, D. (2020a). [dplyr: A grammar of data manipulation](https://cran.r-project.org/web/packages/dplyr/index.html). R package, version 0.8.5.
-
----
-## References
-
-Wickham, H., François, W., Henry L. and Müller, K. (2020b). [ggplot2: Create elegant data visualisations using the grammar of graphics](https://cran.r-project.org/web/packages/ggplot2/index.html). R package, version 0.8.5.
-
-Wiernik, B. M. (2020). [American Psychological Association 7th edition (no ampersand)](https://www.zotero.org/styles/apa-no-ampersand). Citation style language file, version 1.0.
-
-Xie, Y. (2020a). [tinytex: Helper functions to install and maintain TeX Live and compile LaTeX documents](https://cran.r-project.org/web/packages/tinytex/index.html). R package, version 0.21.
-
-Xie, Y. (2020b). [knitr: A general-purpose package for dynamic report generation in R](https://cran.r-project.org/web/packages/knitr/index.html). R package, version 1.28.
-
-Xie, Y. (2020c). [bookdown: Authoring books and technical documents with R Markdown](https://cran.rstudio.com/web/packages/bookdown/index.html). R package, version 0.18.
-
-Xie, Y. (2020d). [blogdown: Create blogs and websites with R Markdown](https://cran.r-project.org/web/packages/blogdown/index.html). R package, version 0.18.
-
-Xie, Y., Allaire, J. J., and Grolemund, G. (2019). R markdown: The definitive guide. CRC Press. Open access at [https://bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown/).
-
-Zhu, H. (2019). [kableExtra: Construct Complex Table with 'kable' and Pipe Syntax](https://cran.r-project.org/web/packages/kableExtra/index.html). R package, version 1.1.0.
 
 ---
 class: middle, center
