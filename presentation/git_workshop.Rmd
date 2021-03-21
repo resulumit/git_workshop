@@ -528,6 +528,26 @@ name: create-github-repo
             - e.g., https://github.com/USER_NAME/REPOSITORY_NAME.git
 
 ---
+## GitHub &mdash; Create a new GitHub repository &mdash; Notes
+
+There are two types of repositories
+
+- public repositories
+  
+   - free for all to create
+   - free for everyone else to see, copy, *propose* changes
+   
+--
+
+<br>
+
+- private repositories
+
+   - in general, a paid service 
+   - with [GitHub Education](https://education.github.com/), it free for academics, students
+      - requires a separate application
+
+---
 class: action
 
 ## GitHub Desktop &mdash; Download from the Internet and Install
