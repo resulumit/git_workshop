@@ -102,11 +102,11 @@ library(countdown)
 
 ### Resul Umit
 
-### 22 March 2021
+### March 2021
 
 .footnote[
 
-[Skip intro &mdash; To the contents slide](#contents-slide).
+[Skip intro &mdash; To the contents slide](#contents-slide). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="mailto:resuluy@uio.no?subject=R Markdown workshop">I can teach this workshop at your institution &mdash; Email me</a>.
 
 ]
 
