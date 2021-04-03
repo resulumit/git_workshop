@@ -22,9 +22,6 @@ options(htmltools.dir.version = FALSE, crayon.enabled = TRUE)
 
 library(crayon)
 library(fansi)
-library(dplyr)
-library(ggplot2)
-library(stargazer)
 library(countdown)
 ```
 
@@ -152,7 +149,7 @@ Resul Umit
 
 - Using Git and GitHub, through
    
-  - command line tools
+  - command line
   - GitHub Desktop, RStudio
   
 --
@@ -188,34 +185,49 @@ Resul Umit
    - communicating the versions to other authors and/or computers
    - working on the same project with co-authors at the same time
 
---
-
-<br>
-
-- We all have to deal with these challenges on daily basis
-   
-   - efficient workflows can save precious resources
-      - e.g., time, but also money and work itself from being wasted
-   
 ---
 ## The Workshop &mdash; Worklow
 
-- Using Git and GitHub 
+The Git-and-GitHub workflow has two steps
 
-   - originally designed for software development, but can be adopted to academic work
-       - Git creates, saves, and tracks versions
-           - can also save them elsewhere, such as on GitHub
-       - Github keeps a copy online
-           - allowing for safe storage, collaboration
-  - might be daunting to beginners, but offers many benefits over alternatives
+- Git creates, saves, and tracks versions
+   - on our own machine
+   - but also can also save them elsewhere, such as on GitHub    
+
+--
+
+- Github keeps a copy online
+    - allowing for safe storage in the cloud
+    - but also for collaboration, through a common version
+  
+---
+## The Workshop &mdash; Worklow &mdash; Comparison
+
+- The Git-and-GitHub workflow might seem daunting to adopt at first
+
+   - originally designed for software development
+      - here, adopted to academic work 
+   - but offers many benefits over alternatives
+      - efficient, free
+
 --
 
 <br>
 
-- Alternatives are easier to learn at the beginning, but sub-optimal in the long run
+- Existing workflows might seem easier to keep
 
-   - e.g., editing, renaming, saving, and emailing
-   - e.g., using applications or websites such as Dropbox, Google Docs, Overleaf
+  - we all version control and collaborate, one way or another
+     - e.g., renaming, saving, and emailing to co-authors
+     - using Dropbox, Google Docs, Overleaf
+  - but less efficient in the long run
+
+--
+
+<br>
+
+- Give the Git-and-GitHub workflow a chance
+
+  - if you are curious enough to be here on this slide, this is probably the right workflow for you
    
 ---
 name: contents-slide
@@ -238,10 +250,10 @@ name: contents-slide
 .pull-right[
 
 [Part 4. What to Version](#part4)
-   - e.g., using a `.gitignore` file
+   - e.g., ignoring
    
 [Part 5. Collaboration](#part5)
-   - e.g., working on the same remote repository
+   - e.g., working on the same files
 
 [Part 6. Third-Party Applications](#part6)
    - e.g., using GitHub Desktop
