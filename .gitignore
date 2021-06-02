@@ -5,7 +5,3 @@
 
 *.Rproj
 *.R
-presentation/*
-!presentation/git_workshop.Rmd
-!presentation/git_workshop.pdf
-
