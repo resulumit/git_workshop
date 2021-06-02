@@ -124,10 +124,11 @@ Resul Umit
 
 - teaching workshops also on
 
-  - [writing reproducible research papers with R](https://resulumit.com/blog/rmd-workshop/)
-  - [working with Twitter data in R](https://resulumit.com/syllabi/21spring_twtr.pdf)
-  - [creating professional websites with R](https://resulumit.com/syllabi/20spring_rbd.pdf)
-    
+  - [writing reproducible research papers](https://resulumit.com/blog/rmd-workshop/)
+  - [working with Twitter data](https://resulumit.com/syllabi/21spring_twtr.pdf)
+  - [creating professional websites](https://resulumit.com/syllabi/20spring_rbd.pdf)
+  - [automated web scraping](https://resulumit.com/teaching/scrp_workshop.html)
+ 
 --
 
 <br>
@@ -2625,3 +2626,7 @@ class: middle, center
 [Back to the contents slide](#contents-slide).
 
 ]
+
+```{r, print, eval=FALSE, echo=FALSE, message=FALSE}
+pagedown::chrome_print("git_workshop.html", output = "git_workshop.pdf")
+```
